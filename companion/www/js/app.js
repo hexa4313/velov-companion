@@ -47,6 +47,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+  
+  .state('tab.navigate', {
+    url: '/navigate',
+    views: {
+      'tab-navigate': {
+        templateUrl: 'templates/tab-navigate.html',
+        controller: 'navigateCtrl'
+      }
+    }
+  })
+
 
   .state('tab.chats', {
       url: '/chats',
