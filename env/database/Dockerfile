@@ -1,12 +1,10 @@
-FROM mysql:latest
+FROM postgres:latest
 
-ENV MYSQL_ROOT_PASSWORD password
-ENV MYSQL_PASSWORD password
-ENV MYSQL_DATABASE lyon_tour
-ENV MYSQL_USER h4312
+ENV POSTGRES_PASSWORD secret
+ENV POSTGRES_USER companion
 
-CMD sed -i "s/^bind-address/#bind-address/" /etc/mysql/my.cnf
-ENTRYPOINT ["/entrypoint.sh"]
+CMD sed -i "s/^bind-address/#bind-address/" /etc/postgres/my.cnf
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
-EXPOSE 3306
-CMD ["mysqld"]
+EXPOSE 5432
+CMD ["postgres"]

@@ -3,8 +3,7 @@ apt-get update && apt-get install -y \
 	python-dev \
 	python-pip \
 	curl \
-	libmysqlclient-dev \
-	python-mysqldb
+	python-psycopg2
 
 pip install -r /app/env/server/requirements.txt
 

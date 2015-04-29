@@ -1,5 +1,5 @@
 flask
 Flask-SQLAlchemy
-MySQL-python
+python-psycopg2
 sqlalchemy-migrate
 flask-restful

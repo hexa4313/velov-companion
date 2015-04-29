@@ -1,0 +1,1 @@
+{"virtualbox":{"/app":{"mount_options":["dmode=777,fmode=666"],"guestpath":"/app","hostpath":"/Users/mozilla/Documents/insa/4if/velov","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"/Users/mozilla/Documents/insa/4if/velov/env","disabled":false}}}

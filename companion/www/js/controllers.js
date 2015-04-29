@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('vc.controllers', [])
 
 .controller('AccountCtrl', function($scope) {
   //$scope.settings = {

@@ -20,32 +20,35 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-      <script src="js/controllers.js"></script>
+    <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
+    <script src="js/navigation.js"></script>
   </head>
-  <body ng-app="starter">
+  <body ng-app="vc">
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
+        <h1 class="title">Velo'V Companion</h1>
       </ion-header-bar>
       <ion-content>
+      <ui-view>
+      </ui-view>
       </ion-content>
       <div class="tabs tabs-icon-top">
-          <a class="tab-item">
+          <a class="tab-item" href="#/bookmarks">
             <i class="icon ion-star"></i>
             Favoris
           </a>
-          <a class="tab-item">
+          <a class="tab-item" href="#/navigation">
             <i class="icon ion-flag"></i>
             Navigation
           </a>
-          <a class="tab-item">
+          <a class="tab-item" href="#/performance">
             <i class="icon ion-heart"></i>
             Performances
           </a>
-          <a class="tab-item">
-            <i class="icon ion-gear-a" href="/templates/profil"></i>
+          <a class="tab-item" href="#/profile">
+            <i class="icon ion-gear-a"></i>
             Profil
           </a>
      </div>
