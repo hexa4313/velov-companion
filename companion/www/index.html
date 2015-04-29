@@ -22,7 +22,7 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
-    <script src="js/navigation.js"></script>
+    <script src="js/home.js"></script>
   </head>
   <body ng-app="vc">
 
@@ -32,16 +32,18 @@
       </ion-header-bar>
       <ion-content>
       <ui-view>
+        <osm-map lat="" lon="">
+        </osm-map>
       </ui-view>
       </ion-content>
       <div class="tabs tabs-icon-top">
+          <a class="tab-item" href="/">
+            <i class="icon ion-home"></i>
+            Home
+          </a>
           <a class="tab-item" href="#/bookmarks">
             <i class="icon ion-star"></i>
             Favoris
-          </a>
-          <a class="tab-item" href="#/navigation">
-            <i class="icon ion-flag"></i>
-            Navigation
           </a>
           <a class="tab-item" href="#/performance">
             <i class="icon ion-heart"></i>
