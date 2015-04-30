@@ -1,6 +1,40 @@
 angular.module('vc.home', [])
 
-.controller('HomeCtrl', function($scope){
+.controller('HomeCtrl', function($scope, Service, $cordovaGeolocation, geoLocation){
+
+		$cordovaGeolocation
+			.getCurrentPosition()
+			.then(function (position) {
+				geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude)
+			}, function (err) {
+				console.log('get geolocation position error');
+				console.log(err);
+				geoLocation.setGeolocation(4.85, 45.76) // Lyon centre
+			});
+
+
+		/**
+		 * Iitialize start view
+		 */
+		$scope.start = function(){
+			var currentPosition = {
+				lat: geoLocation.getGeolocation().lat,
+				lng: geoLocation.getGeolocation().lng
+			};
+			Services.discover(currentPosition).then(function(result){
+					console.log(result);
+					$scope.map.addStations(result);
+				},
+				// error handling
+				function(){
+					//window.alert('Unavailable service, please re-try later !');
+					console.log('Error on Home start');
+
+				});
+
+
+		};
+
 	$scope.map = (function(elemId) {
 		myPos = {
 			lon: 4.871454,
@@ -78,4 +112,7 @@ angular.module('vc.home', [])
     };
 */
 	})("main-map");
+
+ // start
+ $scope.start();
 });
