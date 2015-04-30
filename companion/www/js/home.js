@@ -46,8 +46,9 @@ angular.module('vc.home', [])
 
 		return {
 			addStations: function(stations) {
-				for st of stations:
+				for(st of stations){
 					console.log(st);
+				}
 			}
 		}
 
