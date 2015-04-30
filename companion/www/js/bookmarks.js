@@ -1,16 +1,34 @@
 angular.module('vc.bookmarks', [])
 
 .controller('BookmarksCtrl', function($scope, Bookmarks) {
-  $scope.bookmarks = Bookmarks.all();
+  $scope.showList = true;
+    $scope.bookmarks = Bookmarks.all();
   $scope.remove = function(bookmark) {
     Bookmarks.remove(bookmark);
+  }
+  $scope.getColor = function(elem) {
+    if (elem < 3) {
+      return "color: red";
+    } else if (3 <= elem && elem <= 5) {
+      return "color: orange";
+    } else if (5 < elem){
+      return "color: green";
+    }
+  }
+
+  $scope.selectBookmark = function(bookmarkId) {
+    $scope.selectedBm = Bookmarks.get(bookmarkId);
+    $scope.showList = false;
+  }
+
+  $scope.back = function() {
+    $scope.showList = true;
   }
 })
 
 .factory('Bookmarks', function() {
   // Might use a resource here that returns a JSON array
 
-  // Some fake testing data
   var bookmarks = [{
     id: 0,
     name: 'Bellecour',
@@ -20,7 +38,7 @@ angular.module('vc.bookmarks', [])
     id: 1,
     name: 'Part Dieu',
     bike:'2',
-    parking:'4'
+    parking:'10'
   }, {
     id: 2,
     name: 'Cordelier',
@@ -29,7 +47,7 @@ angular.module('vc.bookmarks', [])
   }, {
     id: 3,
     name: 'Charpennes',
-    bike:'0',
+    bike:'10',
     parking:'6'
   }];
 
@@ -50,3 +68,5 @@ angular.module('vc.bookmarks', [])
     }
   };
 });
+
+

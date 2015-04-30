@@ -1,15 +1,65 @@
-<div class="list list-inset" >
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="bookmark in bookmarks" type="item-text-wrap" href="#/bookmarks/{{bookmark.id}}">
-        <h2>{{bookmark.name}}</h2>
-        <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <p>{{bookmark.bike}}<i class="ion-android-bicycle"></i></p>
-        <p>{{bookmark.parking}} <i class="ion-android-pin"></i></p>
+<div id="listBookmarks" ng-show="showList">
+  <div class="container">
+    <div id="left">Stations favorites</div>
+    <div id="right">
+      <div id="rLeft"> <i class="ion-android-bicycle"></i> </div>
+      <div id="rRight"><i class="icon ion-ios-home-outline"></i></div>
+    </div>
+  </div>
 
-        <ion-option-button class="button-assertive" ng-click="remove(bookmark)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
+  <div class="list list-inset">
+      <ion-list>
+        <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="bookmark in bookmarks" type="item-text-wrap" ng-click="selectBookmark(bookmark.id)">
+          
+          <div class="container2">
+            <div id="left"><h2>{{bookmark.name}}</h2></div>
+            <div id="right">
+              <div id="rLeftBike" style="{{getColor(bookmark.bike)}}"> {{bookmark.bike}} </div>
+              <div id="rRightParking" style="{{getColor(bookmark.parking)}}"> {{bookmark.parking}} </div>
+            </div>
+          </div>
+
+          <i class="icon ion-chevron-right icon-accessory"></i>
+          <ion-option-button class="button-assertive" ng-click="remove(bookmark)">
+            Delete
+          </ion-option-button>
+        </ion-item>
+      </ion-list>
+  </div>
+</div>
+
+
+<div class="bookmarkDetail" ng-show="!showList">
+    <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="back()">Back</a>
+
+    <div class="bar bar-subheader">
+      <h1 class="title">{{selectedBm.name}}</h1>
+    </div>
+
+    <div class="containerDetail">
+      <div id="left"> 
+        <i class="icon ion-android-bicycle"></i> <br>
+        <p style="{{getColor(selectedBm.bike)}}">{{selectedBm.bike}}</p>
+      </div>
+      <div id="right">
+        <i class="icon ion-ios-home-outline"></i> <br>
+        <p style="{{getColor(selectedBm.parking)}}">{{selectedBm.parking}}</p>
+      </div>
+    </div>
+  
+    <button id="btnItineraire" class="button button-block button-assertive" href="#">
+      Itinéraire
+    </button>
+
+    <div class="card">
+      <div class="item item-divider">
+        Informations
+      </div>
+      <div class="item item-text-wrap">
+        Adresse <br>
+        Station ouverte
+      </div>
+    </div>
+
 </div>
