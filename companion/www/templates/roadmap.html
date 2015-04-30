@@ -1,8 +1,31 @@
-<div class="list list-inset">
-    <label class="item item-input">Départ
-    </label>
-    <input type="text" placeholder="Départ">
-    Arrivée<label class="item item-input">
-        <input style=" width :10%; margin-bottom: 7px; padding: 0; float: left;" type="text" placeholder="Arrivée">
-    </label>
+<div id="roadmap">
+    <div class="list list-inset" >
+        <label class="item item-input">Départ
+            <input type="text" ng-model="locations.from.name" placeholder="Départ">
+        </label>
+        <i class="ion-arrow-up-b"></i>
+    </div>
+    <div class="item-input-inset">
+        <label class="item item-input">Arrivée
+            <input ng-model="locations.dest.name" type="text" placeholder="Arrivée">
+        </label>
+        <i class="ion-arrow-down-b"></i>
+    </div>
+</div>
+
+<div> <!-- Necessaire ?? -->
+    <div class="tabs">
+        <a class="tab-item">
+            Normal
+        </a>
+        <a class="tab-item">
+            Sportif
+        </a>
+    </div>
+</div>
+
+<div>
+    <button class="button icon-left ion-search button-assertive" ng-click="findRoadmap()">
+        Rechercher
+    </button>
 </div>
