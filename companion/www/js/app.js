@@ -41,6 +41,11 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home
     templateUrl: 'templates/profil.html',
     controller: 'loginController'
   })
+    .state('profilConnecte', {
+    url: '/profilConnecte',
+    templateUrl: 'templates/profilConnecte.html',
+    controller: 'loginController'
+  })
 
   .state('home', {
     url: '/',

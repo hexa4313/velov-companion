@@ -5,7 +5,7 @@ angular.module('vc.loginController', [])
  
     $scope.login = function() {
         LoginService.loginUser($scope.data.username, $scope.data.password).success(function(data) {
-            $state.go('home');
+            $state.go('profilConnecte');
         }).error(function(data) {
             var alertPopup = $ionicPopup.alert({
                 title: 'Login failed!',

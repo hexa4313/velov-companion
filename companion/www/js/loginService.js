@@ -1,7 +1,7 @@
 angular.module('vc.loginService', [])
 
 
-.service('LoginService', function($ionicPopup,$q) {
+.service('LoginService', function($q) {
     return {
         loginUser: function(name, pw) {
             var deferred = $q.defer();
