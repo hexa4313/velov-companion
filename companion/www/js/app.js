@@ -70,6 +70,11 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home
     templateUrl: 'templates/roadmap.html',
     controller: 'RoadmapCtrl'
  })
+  .state('roadmapStation', {
+      url: '/roadmap/selectedStation/:stationId',
+      templateUrl: 'templates/roadmap.html',
+      controller: 'RoadmapCtrl'
+   })
 
   .state('search', {
     url: '/search',
