@@ -1,1 +1,12 @@
 /* Empty. Add your own CSS if you like */
+
+.station-marker {
+	width:50px;
+	height: 100px;
+	font-size: 27px;
+	text-align: center;
+	background: #EF473A;
+	border-radius: 100px 100px 0 100px;
+	color:#fff;
+	line-height: 34px;
+}
