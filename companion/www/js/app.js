@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home', 'vc.bookmarks', 'vc.bookmark'])
+angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home', 'vc.bookmarks'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -27,13 +27,6 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  // setup an abstract state for the tabs directive
-  /*  .state('tab', {
-    url: "/tab",
-    abstract: true,
-    templateUrl: "templates/tabs.html"
-  })*/
-
   // Each tab has its own nav history stack:
 
   .state('profil', {
@@ -54,12 +47,6 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home
     controller: 'BookmarksCtrl'
   })
 
-  .state('bookmark', {
-    url: "/bookmarks/:bookmarkId",
-    templateUrl: "templates/bookmark.html",
-    controller: 'BookmarkCtrl'
-  })
-
   .state('performance', {
     url: '/performance',
     templateUrl: 'templates/performance.html',
@@ -76,3 +63,4 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home
   $urlRouterProvider.otherwise('/');
 
 });
+
