@@ -28,23 +28,27 @@ angular.module('vc.home', ['ngStorage'])
 		}
 		$scope.start = function(){
 
-			findMe();
-			var currentPosition = {
-				lat: geoLocation.getGeolocation().lat,
-				lng: geoLocation.getGeolocation().lng
-			};
-			console.log('currentPosition');
-			console.log(currentPosition);
-			Services.discover(currentPosition).then(function(result){
-					console.log(result);
-					$scope.map.addStations(result);
-				},
-				// error handling
-				function(){
-					//window.alert('Unavailable service, please re-try later !');
-					console.log('Error on Home start');
+			var promise  = findMe();
+			promise.then(function(position) {
 
-				});
+				var currentPosition = {
+					lat: geoLocation.getGeolocation().lat,
+					lng: geoLocation.getGeolocation().lng
+				};
+				console.log('currentPosition');
+				console.log(currentPosition);
+				Services.discover(currentPosition).then(function(result){
+						console.log(result);
+						$scope.map.addStations(result);
+					},
+					// error handling
+					function(){
+						//window.alert('Unavailable service, please re-try later !');
+						console.log('Error on Home start');
+
+					});
+			});
+
 
 
 		};
