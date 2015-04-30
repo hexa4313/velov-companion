@@ -9,8 +9,8 @@ angular.module('vc').factory('geoLocation', function ($localStorage) {
                 var userPosition = {
                     latitude: latitude,
                     longitude: longitude
-                }
-                $localStorage['geoLocation'] = userPosition
+                };
+                $localStorage['geoLocation'] = userPosition;
             },
             getGeolocation: function () {
                 return glocation = {

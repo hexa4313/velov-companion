@@ -8,10 +8,9 @@ angular.module('vc.home', ['ngStorage'])
 		/**
 		 * Iitialize start view
 		 */
-		$scope.start = function(){
-
+		$scope.findMe = function(){
 			var onSuccess = function(position)  {
-				geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude)
+				geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
 			};
 			function onError(err) {
 				console.log('get geolocation position error');
@@ -19,7 +18,10 @@ angular.module('vc.home', ['ngStorage'])
 				geoLocation.setGeolocation(4.85, 45.76) // Lyon centre
 			};
 			navigator.geolocation.getCurrentPosition(onSuccess, onError);
+		}
+		$scope.start = function(){
 
+			$scope.findMe();
 			var currentPosition = {
 				lat: geoLocation.getGeolocation().lat,
 				lng: geoLocation.getGeolocation().lng
@@ -140,6 +142,7 @@ angular.module('vc.home', ['ngStorage'])
 		},
 	];
 		$scope.map.addStations(stations);
+		$scope.start();
    /* return {
     	setCenter: function(position, zoom) {
     		var position = new ol.LonLat(MyPos.lon, MyPos.lat).transform(fromProjection, toProjection);
