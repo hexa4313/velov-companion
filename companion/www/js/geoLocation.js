@@ -10,12 +10,12 @@ angular.module('vc').factory('geoLocation', function ($localStorage) {
                     latitude: latitude,
                     longitude: longitude
                 }
-                $localStorage.setObject('geoLocation', userPosition)
+                $localStorage['geoLocation'] = userPosition
             },
             getGeolocation: function () {
                 return glocation = {
-                    lat: $localStorage.getObject('geoLocation').latitude,
-                    lng: $localStorage.getObject('geoLocation').longitude
+                    lat: $localStorage['geoLocation'].latitude,
+                    lng: $localStorage['geoLocation'].longitude
                 }
             }
         };

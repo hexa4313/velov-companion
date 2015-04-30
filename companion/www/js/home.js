@@ -1,26 +1,31 @@
-angular.module('vc.home', [])
+angular.module('vc.home', ['ngStorage'])
 
-.controller('HomeCtrl', function($scope, Service, $cordovaGeolocation, geoLocation){
+.controller('HomeCtrl', function($scope, Services, geoLocation){
 
-		$cordovaGeolocation
-			.getCurrentPosition()
-			.then(function (position) {
-				geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude)
-			}, function (err) {
-				console.log('get geolocation position error');
-				console.log(err);
-				geoLocation.setGeolocation(4.85, 45.76) // Lyon centre
-			});
-
+		// to get it : <cordova plugin add cordova-plugin-geolocation> + bower install ngstorage
+		//var posOptions = {timeout: 10000, enableHighAccuracy: false};
 
 		/**
 		 * Iitialize start view
 		 */
 		$scope.start = function(){
+
+			var onSuccess = function(position)  {
+				geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude)
+			};
+			function onError(err) {
+				console.log('get geolocation position error');
+				console.log(err);
+				geoLocation.setGeolocation(4.85, 45.76) // Lyon centre
+			};
+			navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
 			var currentPosition = {
 				lat: geoLocation.getGeolocation().lat,
 				lng: geoLocation.getGeolocation().lng
 			};
+			console.log('currentPosition');
+			console.log(currentPosition);
 			Services.discover(currentPosition).then(function(result){
 					console.log(result);
 					$scope.map.addStations(result);
