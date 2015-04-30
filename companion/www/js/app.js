@@ -34,6 +34,11 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home
     templateUrl: 'templates/profil.html',
     controller: 'loginController'
   })
+    .state('profilConnecte', {
+    url: '/profilConnecte',
+    templateUrl: 'templates/profilConnecte.html',
+    controller: 'loginController'
+  })
 
   .state('home', {
     url: '/',
@@ -52,12 +57,18 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home
     templateUrl: 'templates/performance.html',
     controller: 'PerformanceCtrl'
   })
+  .state('roadmap', {
+    url: '/roadmap',
+    templateUrl: 'templates/roadmap.html',
+    controller: 'RoadmapCtrl'
+ })
 
   .state('search', {
     url: '/search',
     templateUrl: 'templates/search.html',
     controller: 'SearchCtrl'
   });
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');
