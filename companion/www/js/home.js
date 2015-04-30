@@ -1,6 +1,45 @@
-angular.module('vc.home', [])
+angular.module('vc.home', ['ngStorage'])
 
-.controller('HomeCtrl', function($scope){
+.controller('HomeCtrl', function($scope, Services, geoLocation){
+
+		// to get it : <cordova plugin add cordova-plugin-geolocation> + bower install ngstorage
+		//var posOptions = {timeout: 10000, enableHighAccuracy: false};
+
+		/**
+		 * Iitialize start view
+		 */
+		$scope.start = function(){
+
+			var onSuccess = function(position)  {
+				geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude)
+			};
+			function onError(err) {
+				console.log('get geolocation position error');
+				console.log(err);
+				geoLocation.setGeolocation(4.85, 45.76) // Lyon centre
+			};
+			navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+			var currentPosition = {
+				lat: geoLocation.getGeolocation().lat,
+				lng: geoLocation.getGeolocation().lng
+			};
+			console.log('currentPosition');
+			console.log(currentPosition);
+			Services.discover(currentPosition).then(function(result){
+					console.log(result);
+					$scope.map.addStations(result);
+				},
+				// error handling
+				function(){
+					//window.alert('Unavailable service, please re-try later !');
+					console.log('Error on Home start');
+
+				});
+
+
+		};
+
 	$scope.map = (function(elemId) {
 		defaultCenter = {
 			lon: 4.871454,
@@ -100,6 +139,21 @@ angular.module('vc.home', [])
 			available_bikes: 0
 		},
 	];
+		$scope.map.addStations(stations);
+   /* return {
+    	setCenter: function(position, zoom) {
+    		var position = new ol.LonLat(MyPos.lon, MyPos.lat).transform(fromProjection, toProjection);
+    		var zoom     = MyPos.zoom;
+    		map.setCenter(position, zoom);
+    	},
+    	addStations: function(stations) {
+    		//GIGIDI
+    	}
+    };
+	})("main-map");
 
-	$scope.map.addStations(stations);
+ // start
+ $scope.start();
+}); */
+	
 });
