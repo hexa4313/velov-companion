@@ -1,0 +1,15 @@
+<div class="list list-inset" >
+    <ion-list>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="bookmark in bookmarks" type="item-text-wrap" href="#/bookmarks/{{bookmark.id}}">
+        <h2>{{bookmark.name}}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+        <p>{{bookmark.bike}}<i class="ion-android-bicycle"></i></p>
+        <p>{{bookmark.parking}} <i class="ion-android-pin"></i></p>
+
+        <ion-option-button class="button-assertive" ng-click="remove(bookmark)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+</div>
