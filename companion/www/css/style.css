@@ -1,12 +1,33 @@
 /* Empty. Add your own CSS if you like */
 
-.station-marker {
+.station-red-marker, .station-grey-marker {
 	width:50px;
 	height: 100px;
-	font-size: 27px;
+	font-size: 28px;
 	text-align: center;
 	background: #EF473A;
 	border-radius: 100px 100px 0 100px;
 	color:#fff;
 	line-height: 34px;
+}
+
+.station-red-marker {
+	background: #EF473A;
+}
+
+.station-grey-marker {
+	background: #999;
+}
+
+.av-bikes-div, .av-stands-div {
+	font-size: 13px;
+	background: #666;
+	display: inline-block;
+	padding:0 0 0 5px;
+	color:#fff;
+	width: 50%;
+}
+
+.av-bikes-div {
+	background: #EF473A;
 }
