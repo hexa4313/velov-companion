@@ -1,6 +1,6 @@
 angular.module('vc.home', ['ngStorage'])
 
-.controller('HomeCtrl', function($scope, Services, geoLocation){
+.controller('HomeCtrl', function($scope, Services, geoLocation, $q){
 
 		// to get it : <cordova plugin add cordova-plugin-geolocation> + bower install ngstorage
 		//var posOptions = {timeout: 10000, enableHighAccuracy: false};
@@ -8,20 +8,27 @@ angular.module('vc.home', ['ngStorage'])
 		/**
 		 * Iitialize start view
 		 */
-		$scope.findMe = function(){
+
+		 function findMe(){
+			var deferred = $q.defer();
+
 			var onSuccess = function(position)  {
+				console.log(position);
 				geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
+				deferred.resolve(position);
 			};
 			function onError(err) {
 				console.log('get geolocation position error');
 				console.log(err);
-				geoLocation.setGeolocation(4.85, 45.76) // Lyon centre
+				geoLocation.setGeolocation(4.85, 45.76);// Lyon centre
+				deferred.reject('Cannot find your position');
 			};
 			navigator.geolocation.getCurrentPosition(onSuccess, onError);
+			return deferred.promise;
 		}
 		$scope.start = function(){
 
-			$scope.findMe();
+			findMe();
 			var currentPosition = {
 				lat: geoLocation.getGeolocation().lat,
 				lng: geoLocation.getGeolocation().lng
