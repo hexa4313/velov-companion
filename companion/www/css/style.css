@@ -121,17 +121,9 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 	color:#EF473A;
 
 }
-
-#roadmap label {
-	display:inline-block;
-	border:1px solid red;
-	width:100%;
-	font-weight:bold;
-}
-
-#roadmap input{
-	float:right; /* shift to right for alignment*/
-	width:60% /* set a width, you can use max-width to limit this as well*/
+.icon-reverse-custom {
+	font-size: 64px;
+	color : #0078A8;
 }
 
 

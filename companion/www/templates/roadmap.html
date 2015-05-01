@@ -1,17 +1,32 @@
-<div id="roadmap">
-    <div class="list list-inset" >
-        <label class="item item-input">Départ
+<div class="row">
+    <div class="col">
+            <span class="input-label">Départ : </span>
+    </div>
+    <div class="col col-75">
+        <label class="item item-input ">
             <input type="text" ng-model="locations.from.name" placeholder="Départ">
         </label>
-        <i class="ion-arrow-up-b"></i>
-    </div>
-    <div class="item-input-inset">
-        <label class="item item-input">Arrivée
-            <input ng-model="locations.dest.name" type="text" placeholder="Arrivée">
-        </label>
-        <i class="ion-arrow-down-b"></i>
     </div>
 </div>
+
+<div class="row">
+    <div class="col" style="margin-left:5%">
+        <h3><a href="" ng-click="reverseLocation()"><i class="ion-arrow-swap icon-reverse-custom"></i></a></h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <span class="input-label">Arrivée : </span>
+    </div>
+
+    <div class="col col-75">
+        <label class="item item-input ">
+            <input ng-model="locations.dest.name" type="text" placeholder="Arrivée">
+        </label>
+    </div>
+</div>
+
 
 <div> <!-- Necessaire ?? -->
     <div class="tabs">
