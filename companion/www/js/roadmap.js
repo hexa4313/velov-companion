@@ -6,6 +6,7 @@ angular.module('vc.roadmap', ['ngRoute'])
 
         // for $routeParams --> bower install angular-route
         $scope.locations = {from : {}, dest : {}};
+        $scope.roadmapType = '';
         // test
         $scope.locations.from  = {name:'Villeurbanne',lng: 4.871454, lat: 45.784011};
         $scope.locations.dest  = {name:'Bellecour', lat:4.938827, lng:45.709621};
@@ -14,6 +15,7 @@ angular.module('vc.roadmap', ['ngRoute'])
             if($routeParams.selectedStation)
             {
                 // Case the user has already selected a from station
+                //TODO request to get station information by id
             }
             else{
                 // simple case (nothing is selected)
@@ -22,9 +24,11 @@ angular.module('vc.roadmap', ['ngRoute'])
 
         $scope.findRoadmap = function() {
 
+
+            console.log($scope.roadmapType);
             if($scope.locations.from.name && $scope.locations.dest.name){
 
-                // TODO request Services.getRoadmap
+                // TODO request Services.getRoadmap + how to display it?
             }
             else{
                 alert("Vous devez choisir une adresse ou station de départ et une destination");

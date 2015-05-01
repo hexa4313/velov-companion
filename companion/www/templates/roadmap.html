@@ -27,20 +27,27 @@
     </div>
 </div>
 
-
-<div> <!-- Necessaire ?? -->
-    <div class="tabs">
-        <a class="tab-item">
+        <!-- TODO : ADAPTER EN FONCTION DU CHOIX DE CALCUL D'ITINERAIRE -->
+<div class="list " style="text-align: center; width: 50%; margin-left: 26%; margin-top: 35px">
+    <label class="item item-radio assertive">
+        <input type="radio" name="roadmapSelection" ng-model="roadmapType" value="normal">
+        <div class="item-content">
             Normal
-        </a>
-        <a class="tab-item">
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+    </label>
+
+    <label class="item item-radio assertive">
+        <input type="radio" name="roadmapSelection" ng-model="roadmapType" value="sportif">
+        <div class="item-content">
             Sportif
-        </a>
-    </div>
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+    </label>
 </div>
 
-<div>
-    <button class="button icon-left ion-search button-assertive" ng-click="findRoadmap()">
-        Rechercher
+<div style="text-align: center; width: 50%; margin-left: 25%; margin-top: 30px">
+    <button class="button icon-left ion-eye button-assertive" ng-click="findRoadmap()">
+        Trouver
     </button>
 </div>
