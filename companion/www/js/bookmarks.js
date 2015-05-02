@@ -1,6 +1,8 @@
 angular.module('vc.bookmarks', [])
 
-.controller('BookmarksCtrl', function($scope, Bookmarks) {
+.controller('BookmarksCtrl', function($scope, $rootScope, Bookmarks) {
+
+      $rootScope.pageTitle = " - Favoris";
   $scope.showList = true;
     $scope.bookmarks = Bookmarks.all();
   $scope.remove = function(bookmark) {

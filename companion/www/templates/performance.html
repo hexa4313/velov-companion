@@ -1,0 +1,21 @@
+
+<div style="margin-bottom: 20px;">
+
+</div>
+<ion-list>
+    <div ng-repeat="perf in perfs">
+        <ion-item class="item-stable"
+                  ng-click="toggleGroup(perf)"
+                  ng-class="{active: isGroupShown(perf)}">
+            <i class="icon" ng-class="isGroupShown(perf) ? 'ion-minus' : 'ion-plus'"></i>
+            &nbsp;
+             {{perf.datePerf | date:'dd MM yyyy'}} : de {{perf.stationDepart}} à {{perf.stationArrivee}}
+        </ion-item>
+        <ion-item class="item-accordion"
+                  ng-show="isGroupShown(perf)">
+            <span class="input-label">Trajet de {{perf.dateDepart}} à {{perf.dateArrivee}}</span>
+            <span class="input-label">Durée :  {{perf.duree}}</span>
+            <span class="input-label">Vitesse :  {{perf.vitesse}}</span>
+        </ion-item>
+    </div>
+</ion-list>
