@@ -2,20 +2,21 @@
  * Created by Modou on 29/04/2015.
  */
 angular.module('vc.roadmap', ['ngRoute'])
-    .controller('RoadmapCtrl', function($scope, $routeParams, Services){
+    .controller('RoadmapCtrl', function($scope, $stateParams, Services, Bookmarks){
 
         // for $routeParams --> bower install angular-route
         $scope.locations = {from : {}, dest : {}};
         $scope.roadmapType = '';
         // test
-        $scope.locations.from  = {name:'Villeurbanne',lng: 4.871454, lat: 45.784011};
-        $scope.locations.dest  = {name:'Bellecour', lat:4.938827, lng:45.709621};
+        //$scope.locations.from  = {name:'Villeurbanne',lng: 4.871454, lat: 45.784011};
+        //$scope.locations.dest  = {name:'Bellecour', lat:4.938827, lng:45.709621};
         $scope.init = function(){
 
-            if($routeParams.selectedStation)
+            if($stateParams.stationId)
             {
                 // Case the user has already selected a from station
-                //TODO request to get station information by id
+                var idStation = parseInt($stateParams.stationId);
+                $scope.locations.from  = Bookmarks.get(idStation);
             }
             else{
                 // simple case (nothing is selected)
@@ -42,4 +43,8 @@ angular.module('vc.roadmap', ['ngRoute'])
             $scope.locations.from = $scope.locations.dest;
             $scope.locations.dest = tmp;
         }
+
+
+        // Start controller
+        $scope.init();
     });
