@@ -1,0 +1,22 @@
+<div class="list list-inset" >
+    <div class="item item-divider">
+            Inscription
+    </div>
+    <label class="item item-input">
+        <input type="text" placeholder="Prénom" ng-model="data.first_name">
+    </label>
+    <label class="item item-input">
+        <input type="text" placeholder="Nom" ng-model="data.last_name">
+    </label>
+    <label class="item item-input">
+        <input type="email" placeholder="Email" ng-model="data.email">
+    </label>
+    <label class="item item-input">
+        <input type="password" placeholder="Mot de passe" ng-model="data.password">
+    </label>
+    <label class="item item-input">
+        <input type="date" placeholder="Date de naissance" ng-model="data.birthday">
+    </label>
+</div>
+
+<button class="button button-block button-assertive" ng-click="inscription()">Inscription</button>

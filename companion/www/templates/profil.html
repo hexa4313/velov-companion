@@ -1,17 +1,57 @@
 <div ng-if="isLogged() == true">
-        <p class="username">Welcome, {{ user.username }}</p>
-    <p class="id">User ID: {{ user.id }}</p>
+     <div class="list">
+         <div class="item item-divider">
+            Informations personnelles
+          </div>
+            <a class="item item-avatar">
+              <h2>Nom</h2>
+              <p>{{ user.username }}</p>
+            </a>
+            <a class="item item-avatar">
+              <h2>Mot de passe</h2>
+              <p> {{ user.password }}</p>
+            </a>
+            <a class="item item-avatar">
+              <h2>Catégorie</h2>
+              <p> {{ user.catSport }}</p>
+            </a>
+          <div class="item item-divider">
+            Informations abonnement
+          </div>
+            <a class="item item-avatar">
+              <h2>Numéro d'abonné</h2>
+              <p>{{ user.numAbonne }}</p>
+            </a>
+            <a class="item item-avatar">
+              <h2>Code pin</h2>
+              <p> {{ user.codePin }}</p>
+            </a>
+    </div>
 </div>
 <div ng-if="isLogged() == false">
     
-    <div class="list list-inset" >
+<div class="list list-inset" >
+    <div class="item item-divider">
+            Informations de connexion
+    </div>
     <label class="item item-input">
         <input type="text" placeholder="Username" ng-model="data.username">
     </label>
     <label class="item item-input">
         <input type="password" placeholder="Password" ng-model="data.password">
     </label>
+    <div class="item item-divider">
+           Si vous avez un abonnement Vélo'v
+    </div>
+    <label class="item item-input">
+        <input type="text" placeholder="NumeroAbonne" ng-model="data.numAbonne">
+    </label>
+    <label class="item item-input">
+        <input type="password" placeholder="CodePin" ng-model="data.codePin">
+    </label>
 </div>
 <button class="button button-block button-assertive" ng-click="login()">Login</button>
+<p> ou </p>
+<button class="button button-block button-assertive" ng-click="inscription()">Inscription</button>
 
 </div>

@@ -13,7 +13,7 @@ angular.module('vc.loginController', [])
     $scope.isLogged = function() { return LoginService.isLogged(); }
     
     $scope.login = function() {
-        LoginService.loginUser($scope.data.username, $scope.data.password, $http).success(function(data) {
+        LoginService.loginUser($scope.data.username, $scope.data.password,$scope.data.numAbonne,$scope.data.codePin, $http).success(function(data) {
             
             $state.reload();
             
@@ -23,6 +23,9 @@ angular.module('vc.loginController', [])
                 template: 'Please check your credentials!'
             });
         });
+    }
+    $scope.inscription = function(){
+        $state.go("subscription");
     }
 })
 

@@ -10,7 +10,7 @@ angular.module('vc.loginService', [])
             return user;
         }
 
-        function loginUser(name, pw, http) {
+        function loginUser(name, pw, numAbonne, codePin, http) {
 
             //user = "apres";
 
@@ -30,7 +30,10 @@ angular.module('vc.loginService', [])
                  user = {
                     "username": name,
                     "password": pw,
-                    "id": "89101112"
+                    "id": "89101112",
+                    "catSport": "sportif",
+                    "numAbonne": numAbonne,
+                    "codePin": codePin
                   };
                  deferred.resolve('Welcome ' + name + '!');
 
