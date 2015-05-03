@@ -1,6 +1,6 @@
 angular.module('vc.home', ['ngStorage'])
 
-.controller('HomeCtrl', function($scope, Services, geoLocation, $q){
+.controller('HomeCtrl', function($scope, $rootScope, Services, geoLocation, $q){
 
 		// to get it : <cordova plugin add cordova-plugin-geolocation> + bower install ngstorage
 		//var posOptions = {timeout: 10000, enableHighAccuracy: false};
@@ -8,7 +8,7 @@ angular.module('vc.home', ['ngStorage'])
 		/**
 		 * Iitialize start view
 		 */
-
+		$rootScope.pageTitle = "";
 		 function findMe(){
 			var deferred = $q.defer();
 

@@ -1,6 +1,8 @@
 angular.module('vc.bookmarks', [])
 
-.controller('BookmarksCtrl', function($scope, Bookmarks) {
+.controller('BookmarksCtrl', function($scope, $rootScope, Bookmarks) {
+
+      $rootScope.pageTitle = " - Favoris";
   $scope.showList = true;
     $scope.bookmarks = Bookmarks.all();
   $scope.remove = function(bookmark) {
@@ -29,6 +31,7 @@ angular.module('vc.bookmarks', [])
 .factory('Bookmarks', function() {
   // Might use a resource here that returns a JSON array
 
+      // TODO must have lat and lng for bookmarks
   var bookmarks = [{
     id: 0,
     name: 'Bellecour',

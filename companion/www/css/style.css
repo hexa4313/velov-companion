@@ -142,6 +142,7 @@
 	height: 50%;
 }
 
+<<<<<<< HEAD
 .details-velo-bar {
 	background: #EF473A;
 	right: -1vw;
@@ -156,75 +157,103 @@
 
 /*---------------------- FAVORIS PAGE ------------------------------------*/
 /*************** Container *********************/
+=======
+/*----------------------FAVORIS TAB ------------------------------------*/
+>>>>>>> 1c0cf148efdeb70f3f2a7c59c2b49380f387c509
 .container, .container2 {
     width: 100%;
-    font-size: 18px;
+    font-size: 14px;
     margin: 10px 0px -10px 0px;
+    position: relative;
+	height: 40px;
 }
-
 
 .container #left {
 	display: inline-block;
-	text-align: left;
-	margin: 10px 0px 0px 80px;
+	position: absolute;
+	left: 50px;
+	height: 30px;
+	width: 50%;
 }
 .container2 #left {
 	display: inline-block;
-	float: left;
+	position: absolute;
+	left: 0px;
+	height: 30px;
 }
 
-.container #right, .container2 #right {
+.container #right {
 	display: inline-block;
-	float:right;
+	position: absolute;
+	right: 15px;
+	width: 30%;
+}
+
+.container2 #right {
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+	width: 30%;
 }
 
 .container #rLeft {
 	display: inline-block;
-	margin: 10px;
+	text-align: left;
+	margin: 0px 10px 0px 0px;
 }
 
 .container2 #rLeftBike {
 	display: inline-block;
 	text-align: left;
-	margin: 0px 20px 0px 0px;
+	margin: 0px 10px 0px 0px;
 }
 
 .container #rRight {
 	display: inline-block;
-	margin: 0px 80px 0px 20px;
+ 	text-align: right;
+ 	position: absolute;
+	margin:  0px 10px 0px 20px;
 }
 
  .container2 #rRightParking {
  	display: inline-block;
  	text-align: right;
-	margin:  0px 15px 0px 20px;
+ 	position: absolute;
+	margin:  0px 10px 0px 20px;
  }
 
-.container #rRight img {
-	width: 30px;
-	height: auto;
+#listBookmarks .list {
+	margin-top: 0px;
+	padding: 0px;
 }
+
 
 .bookmarkDetail h1 {
 	text-align: center;
 }
 
 .containerDetail {
-	width: 160px;
+	width: 125px;
+    position: relative;
 	margin:50px auto 10px;
+	height: 60px;
 }
 
 .containerDetail #left {
 	display: inline-block;
+	position: absolute;
+	left: 0px;
 	background-color: #DCDCDC;
-	padding: 5px 30px;
+	padding: 3px 20px;
 	margin-right: 3px;
 }
 
 .containerDetail #right {
 	display: inline-block;
+	position: absolute;
+	right: 0px;
 	background-color: #DCDCDC;
-	padding: 5px 30px;
+	padding: 3px 20px;
 	margin-left: 3px;
 }
 
@@ -236,6 +265,7 @@
 .bookmarkDetail .card {
 	width: 90%;
 	margin: auto;
+}
 
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active,
 ion-tabs.tabs-color-active-positive .tab-item.active,
@@ -243,17 +273,10 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 	color:#EF473A;
 
 }
-
-#roadmap label {
-	display:inline-block;
-	border:1px solid red;
-	width:100%;
-	font-weight:bold;
+.icon-reverse-custom {
+	font-size: 34px;
+	color : #0078A8;
 }
 
-#roadmap input{
-	float:right; /* shift to right for alignment*/
-	width:60% /* set a width, you can use max-width to limit this as well*/
-}
 
 

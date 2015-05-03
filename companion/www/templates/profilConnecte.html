@@ -1,10 +1,7 @@
-<div class="list list-inset" >
-    <label class="item item-input">
-        <input type="text" placeholder="Username" ng-model="data.username">
-    </label>
-    <label class="item item-input">
-        <input type="password" placeholder="Password" ng-model="data.password">
-    </label>
-</div>
- <input type="text" ng-model="data.password">
+<div ng-app="vc">
+  <div ng-controller="loginController">
 
+    <p class="username">Welcome, {{ user.username }}</p>
+    <p class="id">User ID: {{ user.id }}</p>
+  </div>
+</div>
