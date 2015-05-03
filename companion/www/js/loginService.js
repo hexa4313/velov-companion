@@ -26,9 +26,12 @@ angular.module('vc.loginService', [])
             
            
             
-            if (name == 'user' && pw == 'secret') {
+            if (name == 'jmonnoire@gmail.com' && pw == 'secret') {
                  user = {
                     "username": name,
+                    "first_name": "justine",
+                    "last_name" :"Monnoire",
+                    "birthday": "26-09-1993",
                     "password": pw,
                     "id": "89101112",
                     "catSport": "sportif",
