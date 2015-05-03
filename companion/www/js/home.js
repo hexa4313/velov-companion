@@ -35,17 +35,13 @@ angular.module('vc.home', ['ngStorage'])
 					lat: geoLocation.getGeolocation().lat,
 					lng: geoLocation.getGeolocation().lng
 				};
-				console.log('currentPosition');
-				console.log(currentPosition);
+				$scope.map.setPosition(currentPosition);
 				Services.discover(currentPosition).then(function(result){
-						console.log(result);
 						$scope.map.addStations(result);
 					},
 					// error handling
 					function(){
 						//window.alert('Unavailable service, please re-try later !');
-						console.log('Error on Home start');
-
 					});
 			});
 
@@ -60,8 +56,8 @@ angular.module('vc.home', ['ngStorage'])
 			zoom: 13
 		}
 		var southWest = L.latLng(45.709621, 4.938827),
-    northEast = L.latLng(45.803759, 4.777122),
-    bounds = L.latLngBounds(southWest, northEast);
+            northEast = L.latLng(45.803759, 4.777122),
+            bounds = L.latLngBounds(southWest, northEast);
 
 		var redIcon = L.divIcon({
 			className: 'station-red-marker',
@@ -77,6 +73,13 @@ angular.module('vc.home', ['ngStorage'])
 			iconAnchor: [35, 35]
 		});
 
+        var meIcon = L.divIcon({
+            className: 'me-marker',
+            html: '<div class="me-pin"></div><div class="me-pulse"></div>',
+            iconSize: [35, 35],
+            iconAnchor: [35, 35]
+        });
+
 		var map = L.map(elemId, {
 			maxBounds: bounds
 		});
@@ -84,10 +87,10 @@ angular.module('vc.home', ['ngStorage'])
 		L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 		    maxZoom: 18
 		}).addTo(map);
-		//map.locate({setView: true, maxZoom: 16});
-		var position = L.latLng(defaultCenter.lat, defaultCenter.lon);
+
+        var position = L.latLng(defaultCenter.lat, defaultCenter.lon);
 		map.setView(position, defaultCenter.zoom);
-		map.locate({setView: true, maxZoom: 16});
+		/*map.locate({setView: true, maxZoom: 16});
 
 		function onLocationFound(e) {
 		    var radius = e.accuracy / 2;
@@ -105,29 +108,41 @@ angular.module('vc.home', ['ngStorage'])
 		}
 
 		map.on('locationerror', onLocationError);
+        */
 
 		return {
 			addStations: function(stations) {
 				for(stt of stations){
-
-					var content = '<strong>' + stt.name +
-					              '</strong><br><div class="av-bikes-div"><i class="icon ion-android-bicycle"></i> ' +
-					              stt.available_bikes +
-					              '</div><div class="av-stands-div"> <i class="icon ion-ios-home"></i> ' +
-					              stt.available_bike_stands +
-					              '</div>';
-					var popup = L.popup().setContent(content);
-					var icon = stt.available_bikes ? redIcon : greyIcon;
-					var marker = L.marker([stt.lat, stt.lng], {
-						icon: icon
-					}).addTo(map).bindPopup(popup, {
-						offset: [-16, -10]
-					});
 					console.log(stt);
+                    var content = '<strong><a href="#/details/2">' + stt.name +
+                                  '</strong><br><div class="av-bikes-div"><i class="icon ion-android-bicycle"></i> ' +
+                                  stt.available_bikes +
+                                  '</div><div class="av-stands-div"> <i class="icon ion-ios-home"></i> ' +
+                                  stt.available_bike_stands +
+                                  '</div></a>';
+                    var popup = L.popup().setContent(content);
+                    var icon = stt.available_bikes ? redIcon : greyIcon;
+                    var marker = L.marker([stt.lat, stt.lng], {
+                        icon: icon
+                    }).addTo(map).bindPopup(popup, {
+                        offset: [-16, -10]
+                    });
 				}
-			}
+			},
+
+            setPosition: function(position) {
+                map.setView([position.lat, position.lng], defaultCenter.zoom);
+                var marker = L.marker([position.lat, position.lng], {
+                    icon: meIcon
+                }).addTo(map);
+                marker.on('click', function() {
+                    console.log(position);
+                    map.setView([position.lat, position.lng]);
+                });
+            }
 		}
 	})("main-map");
+
 
 	var stations = [
 		{
@@ -152,22 +167,8 @@ angular.module('vc.home', ['ngStorage'])
 			available_bikes: 0
 		},
 	];
-		$scope.map.addStations(stations);
-		$scope.start();
-   /* return {
-    	setCenter: function(position, zoom) {
-    		var position = new ol.LonLat(MyPos.lon, MyPos.lat).transform(fromProjection, toProjection);
-    		var zoom     = MyPos.zoom;
-    		map.setCenter(position, zoom);
-    	},
-    	addStations: function(stations) {
-    		//GIGIDI
-    	}
-    };
-	})("main-map");
+	$scope.map.addStations(stations);
 
- // start
- $scope.start();
-}); */
-	
+	$scope.start();
+
 });

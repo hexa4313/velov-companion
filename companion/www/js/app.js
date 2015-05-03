@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home', 'vc.bookmarks'])
+angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home', 'vc.bookmarks', 'vc.details'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -32,7 +32,7 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home
   .state('profil', {
     url: '/profil',
     templateUrl: 'templates/profil.html',
-    controller: 'loginController'
+    controller: 'loginController',
   })
     .state('profilConnecte', {
     url: '/profilConnecte',
@@ -44,6 +44,12 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.home
     url: '/',
     templateUrl: 'templates/home.html',
     controller: 'HomeCtrl'
+  })
+
+  .state('details', {
+    url: '/details/:stationid',
+    templateUrl: 'templates/details.html',
+    controller: 'DetailsCtrl'
   })
 
   .state('bookmarks', {

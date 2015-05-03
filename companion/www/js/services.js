@@ -7,8 +7,18 @@ angular.module('vc').factory('Services', function ($http) {
     return {
         discover: function (currentPosition) {
             // $http returns a promise, which has a then function, which also returns a promise
-            return $http.get('url??').then(function (response) {
-                return response.data; // Json Struct ?
+            var url = ''; //'https://download.data.grandlyon.com/ws/rdata/jcd_jcdecaux.jcdvelov/all.json';
+            return $http.get(url).then(function (response) {
+                var stations = [];
+                // Convert stations arrays to station objects
+                /*for(entry of response.data.values) {
+                    var station = {};
+                    for(var i=0; i < entry.length; i++) {
+                        station[response.data.fields[i]] = entry[i];
+                    }
+                    stations.push(station);
+                }*/
+                return stations;
             });
         },
         getUser: function (userID) {
