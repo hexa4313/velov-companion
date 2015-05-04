@@ -38,7 +38,7 @@ angular.module('vc.home', ['ngStorage'])
 				Services.discover(currentPosition).then(function(result){
                     console.log(result);
 						$scope.map.addStations(result);
-                        $rootScope['stations'] = result;
+                        Stations.setStations(result);
 					},
 					// error handling
 					function(){

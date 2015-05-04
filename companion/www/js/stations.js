@@ -11,6 +11,7 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                 if(!$localStorage['stations']) {
                     return null;
                 }
+                console.log($localStorage['stations']);
                 for(stt of $localStorage['stations']) {
                     if(stt.number == id) {
                         return stt;
