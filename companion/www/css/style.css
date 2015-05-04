@@ -290,14 +290,6 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 
 /*---------------------- login PAGE ------------------------------------*/
 
-.item .item-divider #login {
-  /*width: 200px;*/
+#bouton{
+    padding: Opx;
 }
-
-.inscription{
-    padding:16px;
-    }
-    
-    .inscription #inscription{
-    }
-
