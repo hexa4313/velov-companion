@@ -48,4 +48,5 @@ angular.module('vc.roadmap', ['ngRoute'])
 
         // Start controller
         $scope.init();
+        
     });
