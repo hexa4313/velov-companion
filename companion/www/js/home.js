@@ -22,7 +22,7 @@ angular.module('vc.home', ['ngStorage'])
 				geoLocation.setGeolocation(4.85, 45.76);// Lyon centre
 				deferred.reject('Cannot find your position');
 			};
-			navigator.geolocation.getCurrentPosition(onSuccess, onError);
+			 navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
 			return deferred.promise;
 		}
 		$scope.start = function(){
@@ -31,18 +31,26 @@ angular.module('vc.home', ['ngStorage'])
 			promise.then(function(position) {
 
 				var currentPosition = {
-					lat: geoLocation.getGeolocation().lat,
-					lng: geoLocation.getGeolocation().lng
+					lat: position.coords.latitude, //geoLocation.getGeolocation().lat,
+					lng: position.coords.longitude
 				};
 				$scope.map.setPosition(currentPosition);
 				Services.discover(currentPosition).then(function(result){
                     console.log(result);
 						$scope.map.addStations(result);
-                        $rootScope['stations'] = result;
+                        Stations.setStations(result);
 					},
 					// error handling
 					function(){
 						//window.alert('Unavailable service, please re-try later !');
+					});
+
+				Services.getAllStations(currentPosition).then(function(allstations){
+						Stations.setAllStations(allstations);
+					},
+					// error handling
+					function(){
+						console.log('cannot get all stations !');
 					});
 			});
 

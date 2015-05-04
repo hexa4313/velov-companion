@@ -11,6 +11,7 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                 if(!$localStorage['stations']) {
                     return null;
                 }
+                console.log($localStorage['stations']);
                 for(stt of $localStorage['stations']) {
                     if(stt.number == id) {
                         return stt;
@@ -65,7 +66,14 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                 bookmarks.splice(1, 0, station);
                 $localStorage['bookmarks'] = bookmarks;
 
+            },
+            setAllStations: function (allStations) {
+                $localStorage['allStations'] = allStations;
+            },
+            getAllStations: function () {
+                return $localStorage['allStations'];
             }
         };
 
 });
+
