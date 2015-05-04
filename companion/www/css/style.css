@@ -141,6 +141,7 @@
 	width:2vw;
 	height: 50%;
 }
+
 .details-velo-bar {
 	background: #EF473A;
 	right: -1vw;
@@ -154,6 +155,7 @@
 }
 
 /*---------------------- FAVORIS PAGE ------------------------------------*/
+/*************** Container *********************/
 
 .container, .container2 {
     width: 100%;
@@ -261,6 +263,19 @@
 	width: 90%;
 	margin: auto;
 }
+
+.buttonHeader {
+	width: 100%;
+	position: relative;	
+}
+
+.star {
+	position: absolute;
+	display: inline-block;
+	right: 20px;
+	margin-top: 5px;
+}
+
 
 ion-tabs.tabs-color-active-positive .tab-item.tab-item-active,
 ion-tabs.tabs-color-active-positive .tab-item.active,

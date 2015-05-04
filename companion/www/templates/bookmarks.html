@@ -37,7 +37,10 @@
 
 
 <div class="bookmarkDetail" ng-show="!showList">
-    <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="back()">Back</a>
+    <div class="buttonHeader">
+      <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="back()">Back</a>
+      <a class="star" ng-click="starClick()"><img ng-src="{{path}}" alt="Star" height="40" width="auto"></a>
+    </div>
 
     <div class="bar bar-subheader">
       <h1 class="title">{{selectedBm.name}}</h1>
