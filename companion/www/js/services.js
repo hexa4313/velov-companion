@@ -49,6 +49,19 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
+        getAllStations: function (currentPosition, radius) {
+            if(!radius) {
+                radius = 1000000;
+            }
+            // $http returns a promise, which has a then function, which also returns a promise
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station?';
+            url += "lng=" + currentPosition.lng +
+            "&lat=" + currentPosition.lat +
+            "&radius=" + radius;
+            return $http.get(url).then(function (response) {
+                return response.data;
+            });
+        },
 
         startBike: function(userID, departureLocation, dateDepart) {
             return $http.put('URL').then(function (response) {

@@ -44,6 +44,14 @@ angular.module('vc.home', ['ngStorage'])
 					function(){
 						//window.alert('Unavailable service, please re-try later !');
 					});
+
+				Services.getAllStations(currentPosition).then(function(allstations){
+						Stations.setAllStations(allstations);
+					},
+					// error handling
+					function(){
+						console.log('cannot get all stations !');
+					});
 			});
 
 
