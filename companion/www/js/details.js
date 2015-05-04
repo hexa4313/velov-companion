@@ -1,11 +1,24 @@
 angular.module('vc.details', ['ngStorage'])
 
-.controller('DetailsCtrl', function($scope, $rootScope, Services, geoLocation, $q, Stations){
+.controller('DetailsCtrl', function($scope, $rootScope, Services, geoLocation, $q, $stateParams, Stations){
 
   $rootScope.pageTitle = "Détails Station";
 
-  var stations = Stations.getStations();
-  console.log(stations);
+  if($stateParams.stationId)
+  {
+      // Case the user has already selected a from station
+      var idStation = parseInt($stateParams.stationId);
+      $scope.station = Stations.getStationByNumber(idStation);
+  }
+  else{
+      $state.go('home');
+  }
+
+  $scope.stationPct = {
+    bikes: ($scope.station.available_bikes * 100) / $scope.station.bike_stands,
+    stands: ($scope.station.available_bike_stands * 100) / $scope.station.bike_stands,
+  }
+
   $scope.map = (function(elemId) {
 
     // Default center for the map

@@ -5,7 +5,17 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                 $localStorage['stations'] = stations;
             },
             getStations: function () {
-                return $localStorage['stations']
+                return $localStorage['stations'];
+            },
+            getStationByNumber: function(id) {
+                if(!$localStorage['stations']) {
+                    return null;
+                }
+                for(stt of $localStorage['stations']) {
+                    if(stt.number == id) {
+                        return stt;
+                    }
+                }
             }
         };
 

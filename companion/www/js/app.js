@@ -47,7 +47,7 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.insc
   })
 
   .state('details', {
-    url: '/details/:stationid',
+    url: '/details/:stationId',
     templateUrl: 'templates/details.html',
     controller: 'DetailsCtrl'
   })
