@@ -3,6 +3,35 @@ angular.module('vc.details', ['ngStorage'])
 .controller('DetailsCtrl', function($scope, $rootScope, Services, geoLocation, $q, $stateParams, Stations){
 
   $rootScope.pageTitle = "Détails Station";
+  var star = true;
+  $scope.path = "/img/bookmark_gold.png";
+
+
+  $scope.starClick = function() {
+    console.log($scope.path);
+    console.log(star);
+    //get element and find out if bookmark or not
+    if (star) {
+      $scope.path = "/img/bookmark_black.png";
+      star = false;
+      // remove from bookmark
+    }
+    else {
+      $scope.path = "/img/bookmark_gold.png";
+      star = true;
+      // add from bookmark
+    }
+  }
+
+  $scope.getColor = function(elem) {
+    if (elem < 3) {
+      return "color: red";
+    } else if (3 <= elem && elem <= 5) {
+      return "color: orange";
+    } else if (5 < elem){
+      return "color: green";
+    }
+  }
 
   if($stateParams.stationId)
   {

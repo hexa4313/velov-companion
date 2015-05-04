@@ -132,8 +132,8 @@
 }
 
 .details-qt {
-	font-size: 30vw;
-	line-height: 30vw;
+	font-size: 20vw;
+	line-height: 20vw;
 }
 
 .details-velo-bar, .details-station-bar {
@@ -149,7 +149,7 @@
 }
 
 .details-station-bar {
-	background:#444;
+	background:green;
 	left:-1vw;
 	top:0;
 }
@@ -288,5 +288,13 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 	color : #0078A8;
 }
 
+.chart {
+	width: 100%;
+ 	height: 300px;
+ 	margin:15px;
+}
 
+.listPerf {
+	margin-top: 30px;
+}
 
