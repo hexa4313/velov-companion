@@ -97,7 +97,7 @@ angular.module('vc.details', ['ngStorage'])
 
     // Instantiates the polyline
     var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map).bindPopup(dPopup);
-    setTimeout(()=>{
+    setTimeout(function(){
       polyline.openPopup();
     },0);
 
