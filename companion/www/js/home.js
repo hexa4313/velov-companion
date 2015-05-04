@@ -1,6 +1,6 @@
 angular.module('vc.home', ['ngStorage'])
 
-.controller('HomeCtrl', function($scope, $rootScope, Services, geoLocation, $q){
+.controller('HomeCtrl', function($scope, $rootScope, Services, geoLocation, $q, Stations){
 
 		// to get it : <cordova plugin add cordova-plugin-geolocation> + bower install ngstorage
 		//var posOptions = {timeout: 10000, enableHighAccuracy: false};
@@ -8,7 +8,7 @@ angular.module('vc.home', ['ngStorage'])
 		/**
 		 * Iitialize start view
 		 */
-		$rootScope.pageTitle = "";
+		$rootScope.pageTitle = "Velo'V Companion";
 		 function findMe(){
 			var deferred = $q.defer();
 
@@ -38,6 +38,7 @@ angular.module('vc.home', ['ngStorage'])
 				$scope.map.setPosition(currentPosition);
 				Services.discover(currentPosition).then(function(result){
 						$scope.map.addStations(result);
+                        $rootScope['stations'] = result;
 					},
 					// error handling
 					function(){
@@ -168,6 +169,7 @@ angular.module('vc.home', ['ngStorage'])
 		},
 	];
 	$scope.map.addStations(stations);
+    Stations.setStations(stations);
 
 	$scope.start();
 

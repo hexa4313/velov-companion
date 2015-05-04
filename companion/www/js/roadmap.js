@@ -5,7 +5,7 @@ angular.module('vc.roadmap', ['ngRoute'])
     .controller('RoadmapCtrl', function($scope, $rootScope, $stateParams, Services, Bookmarks){
 
         // for $routeParams --> bower install a$scope.pageTitle = 'Itinéraire';ngular-route
-        $rootScope.pageTitle = " - Itinéraire";
+        $rootScope.pageTitle = "Itinéraire";
         $scope.locations = {from : {}, dest : {}};
         $scope.roadmapType = '';
         // test

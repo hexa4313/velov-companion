@@ -4,7 +4,7 @@
 angular.module('vc.perf', [])
     .controller('PerformanceCtrl', function($scope,$rootScope, Services){
 
-        $rootScope.pageTitle = " - Performances";
+        $rootScope.pageTitle = "Performances";
         $scope.init = function () {
 
         }

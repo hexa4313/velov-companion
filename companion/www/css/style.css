@@ -141,8 +141,6 @@
 	width:2vw;
 	height: 50%;
 }
-
-<<<<<<< HEAD
 .details-velo-bar {
 	background: #EF473A;
 	right: -1vw;
@@ -156,10 +154,7 @@
 }
 
 /*---------------------- FAVORIS PAGE ------------------------------------*/
-/*************** Container *********************/
-=======
-/*----------------------FAVORIS TAB ------------------------------------*/
->>>>>>> 1c0cf148efdeb70f3f2a7c59c2b49380f387c509
+
 .container, .container2 {
     width: 100%;
     font-size: 14px;

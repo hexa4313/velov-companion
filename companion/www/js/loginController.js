@@ -2,12 +2,12 @@ angular.module('vc.loginController', [])
 
 .controller('loginController', function($scope,$rootScope, LoginService, $ionicPopup, $state, $http) {
 
-    $rootScope.pageTitle = " - Connexion";
+    $rootScope.pageTitle = "Connexion";
     $scope.data = {};
     $scope.user = {};
     if(LoginService.isLogged()){
         $scope.user = LoginService.getUser();
-        $rootScope.pageTitle = " - Profil";
+        $rootScope.pageTitle = "Profil";
     }
             
     $scope.isLogged = function() { return LoginService.isLogged(); }

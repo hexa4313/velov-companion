@@ -1,7 +1,11 @@
 angular.module('vc.details', ['ngStorage'])
 
-.controller('DetailsCtrl', function($scope, Services, geoLocation, $q){
+.controller('DetailsCtrl', function($scope, $rootScope, Services, geoLocation, $q, Stations){
 
+  $rootScope.pageTitle = "Détails Station";
+
+  var stations = Stations.getStations();
+  console.log(stations);
   $scope.map = (function(elemId) {
 
     // Default center for the map
