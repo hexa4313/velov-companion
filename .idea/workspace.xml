@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aa9960e8-35d8-4d29-bd23-c59db522851b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/companion/www/js/roadmap.js" afterPath="$PROJECT_DIR$/companion/www/js/roadmap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/companion/www/js/services.js" afterPath="$PROJECT_DIR$/companion/www/js/services.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/companion/www/js/stations.js" afterPath="$PROJECT_DIR$/companion/www/js/stations.js" />
+      <change type="DELETED" beforePath="C:\Users\Modou\Documents\GitHub\pld_SmartCity\velov-companion\.idea\.name" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Modou\Documents\GitHub\pld_SmartCity\velov-companion\.idea\encodings.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Modou\Documents\GitHub\pld_SmartCity\velov-companion\.idea\misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Modou\Documents\GitHub\pld_SmartCity\velov-companion\.idea\modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Modou\Documents\GitHub\pld_SmartCity\velov-companion\.idea\scopes\scope_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Modou\Documents\GitHub\pld_SmartCity\velov-companion\.idea\vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Modou\Documents\GitHub\pld_SmartCity\velov-companion\.idea\velov-companion.iml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Modou\Documents\GitHub\pld_SmartCity\velov-companion\.idea\workspace.xml" afterPath="" />
     </list>
     <ignored path="velov-companion.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,8 +88,8 @@
       <file leaf-file-name="details.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/companion/www/js/details.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2210">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="2227">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -93,8 +98,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/companion/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="549" max-vertical-offset="1530">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1411">
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -123,8 +128,8 @@
       <file leaf-file-name="stations.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/companion/www/js/stations.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="796" max-vertical-offset="1428">
-              <caret line="73" column="13" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="830" max-vertical-offset="1445">
+              <caret line="75" column="10" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -190,7 +195,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -265,6 +269,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -327,15 +332,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="20" width="1346" height="688" extended-state="1" />
-    <editor active="true" />
+    <frame x="10" y="20" width="1346" height="688" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -669,8 +674,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/companion/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="549" max-vertical-offset="1530">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="430" max-vertical-offset="1411">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -702,8 +707,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/companion/www/js/details.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2210">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="2227">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -734,8 +739,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/companion/www/js/stations.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="796" max-vertical-offset="1428">
-          <caret line="73" column="13" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="830" max-vertical-offset="1445">
+          <caret line="75" column="10" selection-start-line="75" selection-start-column="10" selection-end-line="75" selection-end-column="10" />
           <folding />
         </state>
       </provider>
