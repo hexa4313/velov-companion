@@ -37,12 +37,34 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                 };
             },
             hasBookmark : function () {
-                if($localStorage['stations']) {
+                if($localStorage['bookmarks']) {
                     return true;
                 }
                 else {
                     return false;
                 }
+            },
+            removeBookmark: function(idBm) {
+                if($localStorage['bookmarks']) {
+                    var bookmarks = $localStorage['bookmarks'];
+                    for (var i = 0; i < bookmarks.length; i++) {
+                        if (bookmarks[i].id === parseInt(idBm)) {
+                            bookmarks.splice(i, 1);
+                            break;
+                        }
+                    }
+                    $localStorage['bookmarks'] = bookmarks;
+                }
+
+            },
+            addBookmark: function(station) {
+                var bookmarks = [];
+                if($localStorage['bookmarks']) {
+                    bookmarks = $localStorage['bookmarks'];
+                }
+                bookmarks.splice(1, 0, station);
+                $localStorage['bookmarks'] = bookmarks;
+
             }
         };
 

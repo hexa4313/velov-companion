@@ -23,7 +23,14 @@ angular.module('vc.bookmarks', [])
       });
     }
   $scope.remove =  function(bookmark) {
+    //TODO Request to push delete operation
     Bookmarks.remove(bookmark);
+    Stations.remove(bookmark.id);
+  }
+
+  $scope.add =  function(station) {
+    Stations.addBookmark(station);
+  //TODO Request to push add operation
   }
   $scope.getColor = function(elem) {
     if (elem < 3) {
