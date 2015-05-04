@@ -25,12 +25,28 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
             });
         },
         getPerformance: function (userID) {
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station?';
             return $http.get('url??').then(function (response) {
                 return response.data;
             });
         },
-        getBookmarks: function (userID) {
-            return $http.get('url??').then(function (response) {
+        getBookmarks: function (user) {
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station/bookmark/';
+            return $http.get(url).then(function (response) {
+                return response.data;
+            });
+        },
+        addBookmark: function (idStation) {
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station/bookmark/';
+            url += idStation;
+            return $http.put(url).then(function (response) {
+                return response.data;
+            });
+        },
+        removeBookmark: function (idStation) {
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station/bookmark/';
+            url += idStation;
+            return $http.delete(url).then(function (response) {
                 return response.data;
             });
         },

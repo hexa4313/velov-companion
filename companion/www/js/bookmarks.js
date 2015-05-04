@@ -1,12 +1,11 @@
 angular.module('vc.bookmarks', [])
 
-.controller('BookmarksCtrl', function($scope, $rootScope, Services, UserService, Bookmarks, Stations) {
+.controller('BookmarksCtrl', function($scope, $rootScope, Services, UserService, Stations) {
 
     $rootScope.pageTitle = "Favoris";
     $scope.showList = true;
     $scope.user = UserService.getUser();
     $scope.isBookmark = false;
-    $scope.bookmarks = Bookmarks.all();
     var star = true;
 
       // TODO Remove Bookmarks factory
@@ -22,15 +21,28 @@ angular.module('vc.bookmarks', [])
             console.log("Erreur sur l'obtention des favoris !")
       });
     }
-  $scope.remove =  function(bookmark) {
-    //TODO Request to push delete operation
-    Bookmarks.remove(bookmark);
-    Stations.remove(bookmark.id);
+  $scope.remove =  function(idStation) {
+
+    Services.removeBookmark(idStation).then(function(result){
+          console.log(result);
+          Stations.remove(idStation);
+        },
+        // error handling
+        function(){
+          console.log("Suppression d'un favoris impossible !")
+        });
+   // Bookmarks.remove(bookmark);
   }
 
   $scope.add =  function(station) {
-    Stations.addBookmark(station);
-  //TODO Request to push add operation
+    Services.addBookmark(station.id).then(function(result){
+          console.log(result);
+          Stations.addBookmark(station);
+        },
+        // error handling
+        function(){
+          console.log("Suppression d'un favoris impossible !")
+        });
   }
   $scope.getColor = function(elem) {
     if (elem < 3) {
@@ -43,7 +55,7 @@ angular.module('vc.bookmarks', [])
   }
 
   $scope.selectBookmark = function(bookmarkId) {
-    $scope.selectedBm = Bookmarks.get(bookmarkId);
+    //$scope.selectedBm = Bookmarks.get(bookmarkId);
     $scope.showList = false;
     $scope.path = "/img/bookmark_gold.png";
   }
@@ -67,50 +79,6 @@ angular.module('vc.bookmarks', [])
       // add from bookmark
     }
   }
-})
-
-.factory('Bookmarks', function() {
-  // Might use a resource here that returns a JSON array
-
-      // TODO must have lat and lng for bookmarks
-  var bookmarks = [{
-    id: 0,
-    name: 'Bellecour',
-    bike:'4',
-    parking:'6'
-  }, {
-    id: 1,
-    name: 'Part Dieu',
-    bike:'2',
-    parking:'10'
-  }, {
-    id: 2,
-    name: 'Cordelier',
-    bike:'1',
-    parking:'0'
-  }, {
-    id: 3,
-    name: 'Charpennes',
-    bike:'10',
-    parking:'6'
-  }];
-
-  return {
-    all: function() {
-      return bookmarks;
-    },
-    remove: function(bookmark) {
-      bookmarks.splice(bookmarks.indexOf(bookmark), 1);
-    },
-    get: function(bookmarkId) {
-      for (var i = 0; i < bookmarks.length; i++) {
-        if (bookmarks[i].id === parseInt(bookmarkId)) {
-          return bookmarks[i];
-        }
-      }
-      return null;
-    }
-  };
 });
 
 
