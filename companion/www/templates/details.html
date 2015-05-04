@@ -1,8 +1,8 @@
   <div class="list card">
 
-  <div class="item item-avatar">
+  <div class="item">
   <h2>
-    <div class="station-red-marker"><i class="icon ion-android-bicycle"></i></div>
+    <div class="station-red-marker"> <i class="icon ion-android-bicycle"></i></div>
     {{station.name}}
   </h2>
   </div>
@@ -11,22 +11,22 @@
   <ul class="details-numbers">
     <li>
       <h3>Vélos</h3>
-      <div class="details-qt">5</div>
-      <div class="details-velo-bar"></div>
+      <div class="details-qt">{{station.available_bikes}}</div>
+      <div class="details-velo-bar" style="height:{{stationPct.bikes}}%"></div>
     </li>
     <li>
       <h3>Places Libres</h3>
-      <div class="details-qt">15</div>
-      <div class="details-station-bar"></div>
+      <div class="details-qt">{{station.available_bike_stands}}</div>
+      <div class="details-station-bar" style="height:{{stationPct.stands}}%"></div>
     </li>
   </ul>
 
-  <button class="button button-block button-assertive">
-    Itineraire
-  </button>
+  <a href="#/roadmap/selectedStation/{{station.number}}" style="text-decoration: none" id="btnItineraire" class="button button-block button-assertive">
+        Itinéraire
+    </a>
 
   <h2>Informations</h2>
-  <p>Rue de l'Algerie</p>
+  <p>{{station.address}}<br ng-if="station.address2">{{station.address2}}<br>{{station.commune}}</p>
   <div id="details-map" style="height:250px; width:100%; margin:0 0 40px"></div>
   </div>
   </div>

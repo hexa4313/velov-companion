@@ -114,8 +114,8 @@ angular.module('vc.home', ['ngStorage'])
 		return {
 			addStations: function(stations) {
 				for(stt of stations){
-					console.log(stt);
-                    var content = '<strong><a href="#/details/2">' + stt.name +
+					//console.log(stt);
+                    var content = '<strong><a href="#/details/' + stt.number + '">' + stt.name +
                                   '</strong><br><div class="av-bikes-div"><i class="icon ion-android-bicycle"></i> ' +
                                   stt.available_bikes +
                                   '</div><div class="av-stands-div"> <i class="icon ion-ios-home"></i> ' +
@@ -147,25 +147,41 @@ angular.module('vc.home', ['ngStorage'])
 
 	var stations = [
 		{
+            number: 1,
 			name: "Chez Modou",
 			lat: 45.784011,
 			lng: 4.871454,
 			available_bike_stands: 10,
-			available_bikes: 3
+			available_bikes: 3,
+            bike_stands: 13,
+            address:  "Rue de l'INSA",
+            address2: "Coté est",
+            commune:  "Lyon"
+
 		},
 		{
+            number: 2,
 			name: "Insa Einstein",
 			lat: 45.782197,
 			lng: 4.876800,
 			available_bike_stands: 1,
-			available_bikes: 20
+			available_bikes: 20,
+            bike_stands: 25,
+            address: "Avenue des Arts",
+            address2: "",
+            commune:  "Villeurbanne"
 		},
 		{
+            number: 3,
 			name: "Hôtel de ville",
 			lat: 45.767516,
 			lng: 4.836339,
 			available_bike_stands: 5,
-			available_bikes: 0
+			available_bikes: 0,
+            bike_stands: 6,
+            address: "Avenue Gaston Berger",
+            address2: "Coté oest",
+            commune:  "Villeurbanne"
 		},
 	];
 	$scope.map.addStations(stations);
