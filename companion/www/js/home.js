@@ -13,7 +13,6 @@ angular.module('vc.home', ['ngStorage'])
 			var deferred = $q.defer();
 
 			var onSuccess = function(position)  {
-				console.log(position);
 				geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
 				deferred.resolve(position);
 			};
@@ -37,6 +36,7 @@ angular.module('vc.home', ['ngStorage'])
 				};
 				$scope.map.setPosition(currentPosition);
 				Services.discover(currentPosition).then(function(result){
+                    console.log(result);
 						$scope.map.addStations(result);
                         $rootScope['stations'] = result;
 					},
@@ -54,7 +54,7 @@ angular.module('vc.home', ['ngStorage'])
 		defaultCenter = {
 			lon: 4.871454,
 			lat: 45.784011,
-			zoom: 13
+			zoom: 17
 		}
 		var southWest = L.latLng(45.709621, 4.938827),
             northEast = L.latLng(45.803759, 4.777122),
@@ -91,30 +91,12 @@ angular.module('vc.home', ['ngStorage'])
 
         var position = L.latLng(defaultCenter.lat, defaultCenter.lon);
 		map.setView(position, defaultCenter.zoom);
-		/*map.locate({setView: true, maxZoom: 16});
-
-		function onLocationFound(e) {
-		    var radius = e.accuracy / 2;
-
-		    L.marker(e.latlng).addTo(map)
-		        .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-		    L.circle(e.latlng, radius).addTo(map);
-		}
-
-		map.on('locationfound', onLocationFound);
-
-		function onLocationError(e) {
-		    alert(e.message);
-		}
-
-		map.on('locationerror', onLocationError);
-        */
 
 		return {
 			addStations: function(stations) {
+                var markerArray = [];
 				for(stt of stations){
-					//console.log(stt);
+                    console.log(stt);
                     var content = '<strong><a href="#/details/' + stt.number + '">' + stt.name +
                                   '</strong><br><div class="av-bikes-div"><i class="icon ion-android-bicycle"></i> ' +
                                   stt.available_bikes +
@@ -123,12 +105,15 @@ angular.module('vc.home', ['ngStorage'])
                                   '</div></a>';
                     var popup = L.popup().setContent(content);
                     var icon = stt.available_bikes ? redIcon : greyIcon;
-                    var marker = L.marker([stt.lat, stt.lng], {
+                    var marker = L.marker([stt.position.latitude, stt.position.longitude], {
                         icon: icon
                     }).addTo(map).bindPopup(popup, {
                         offset: [-16, -10]
                     });
-				}
+                    markerArray.push(marker);
+                }
+                var group = new L.featureGroup(markerArray);
+                map.fitBounds(group.getBounds().pad(0.1));
 			},
 
             setPosition: function(position) {
@@ -137,14 +122,13 @@ angular.module('vc.home', ['ngStorage'])
                     icon: meIcon
                 }).addTo(map);
                 marker.on('click', function() {
-                    console.log(position);
                     map.setView([position.lat, position.lng]);
                 });
             }
 		}
 	})("main-map");
 
-
+    /*
 	var stations = [
 		{
             number: 1,
@@ -185,7 +169,7 @@ angular.module('vc.home', ['ngStorage'])
 		},
 	];
 	$scope.map.addStations(stations);
-    Stations.setStations(stations);
+    Stations.setStations(stations);*/
 
 	$scope.start();
 
