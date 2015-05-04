@@ -11,6 +11,12 @@ angular.module('vc').factory('UserService', function ($localStorage) {
         },
         getUser: function () {
             return $localStorage['user'];
+        },
+        isLogged: function(){
+            return ($localStorage['user'] == null ? false : true);
+        },
+        logout: function(){
+            $localStorage['user'] = null;
         }
     };
 

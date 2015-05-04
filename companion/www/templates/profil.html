@@ -34,6 +34,9 @@
               <h2>Code pin</h2>
               <p> {{ user.codePin }}</p>
             </a>
+            <a class="item item-avatar">
+            <button class="button button-block button-assertive" id="login" ng-click="logout()">Se déconnecter</button>
+            </a>
     </div>
 </div>
 <div ng-if="isLogged() == false">

@@ -1,16 +1,18 @@
 angular.module('vc.loginController', [])
 
-.controller('loginController', function($scope,$rootScope, LoginService, $ionicPopup, $state, $http) {
+.controller('loginController', function($scope,$rootScope, LoginService,UserService, $ionicPopup, $state, $http) {
 
     $rootScope.pageTitle = "Connexion";
     $scope.data = {};
     $scope.user = {};
-    if(LoginService.isLogged()){
-        $scope.user = LoginService.getUser();
+    if(UserService.isLogged()){
+        $scope.user = UserService.getUser();
         $rootScope.pageTitle = "Profil";
     }
             
-    $scope.isLogged = function() { return LoginService.isLogged(); }
+    $scope.isLogged = function() { return UserService.isLogged(); }
+    
+    $scope.logout = function(){UserService.logout();  $state.reload();}
     
     $scope.login = function() {
         LoginService.loginUser($scope.data.username, $scope.data.password,$scope.data.numAbonne,$scope.data.codePin, $http).success(function(data) {
