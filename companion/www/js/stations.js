@@ -65,7 +65,14 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                 bookmarks.splice(1, 0, station);
                 $localStorage['bookmarks'] = bookmarks;
 
+            },
+            setAllStations: function (allStations) {
+                $localStorage['allStations'] = allStations;
+            },
+            getAllStations: function () {
+                return $localStorage['allStations'];
             }
         };
 
 });
+
