@@ -288,5 +288,16 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 	color : #0078A8;
 }
 
+/*---------------------- login PAGE ------------------------------------*/
 
+.item .item-divider #login {
+  /*width: 200px;*/
+}
+
+.inscription{
+    padding:16px;
+    }
+    
+    .inscription #inscription{
+    }
 

@@ -7,7 +7,7 @@ angular.module('vc.inscriptionController', [])
     
     
      $scope.inscription = function() {
-     inscriptionService.inscription($scope.data.first_name, $scope.data.last_name,$scope.data.email,$scope.data.password,$scope.data.birthday, $http).success(function(data) {
+     inscriptionService.inscription($scope.data.first_name, $scope.data.last_name,$scope.data.email,$scope.data.password,$scope.data.birthday,$scope.data.numAbonne,$scope.data.codePin, $http).success(function(data) {
             LoginService.loginUser($scope.data.email, $scope.data.password,$scope.data.numAbonne,$scope.data.codePin, $http);
             $state.go("profil");
             
