@@ -1,32 +1,47 @@
-  <div class="list card">
+<div class="buttonHeader">
+  <a class="button icon-left ion-chevron-left button-clear button-dark" href="#/">Retour</a>
+  <a class="star" ng-click="starClick()"><img ng-src="{{path}}" alt="Star" height="40" width="auto"></a>
+</div> 
 
-  <div class="item">
-  <h2>
-    <div class="station-red-marker"> <i class="icon ion-android-bicycle"></i></div>
-    {{station.name}}
-  </h2>
+<div class="list card">
+  <div class="item item item-divider" style="text-align:center;">
+    <h2>
+      <div class="station-red-marker"> <i class="icon ion-android-bicycle"></i></div>
+      {{station.name}}
+    </h2>
   </div>
 
   <div class="item item-body">
-  <ul class="details-numbers">
-    <li>
-      <h3>Vélos</h3>
-      <div class="details-qt">{{station.available_bikes}}</div>
-      <div class="details-velo-bar" style="height:{{stationPct.bikes}}%"></div>
-    </li>
-    <li>
-      <h3>Places Libres</h3>
-      <div class="details-qt">{{station.available_bike_stands}}</div>
-      <div class="details-station-bar" style="height:{{stationPct.stands}}%"></div>
-    </li>
-  </ul>
+    <ul class="details-numbers">
+      <li >
+        <h3 style="color:red;">Vélos</h3>
+        <div class="details-qt" style="color:red;">{{station.available_bikes}}</div>
+        <div class="details-velo-bar" style="height:{{stationPct.bikes}}%"></div>
+      </li>
+      <li >
+        <h3 style="color:green;">Places Libres</h3>
+        <div class="details-qt" style="color:green;">{{station.available_bike_stands}}</div>
+        <div class="details-station-bar" style="height:{{stationPct.stands}}%"></div>
+      </li>
+    </ul>
+
 
   <a href="#/roadmap/selectedStation/{{station.number}}" style="text-decoration: none" id="btnItineraire" class="button button-block button-assertive">
       Itinéraire à partir de cette station
   </a>
 
-  <h2>Informations</h2>
-  <p>{{station.address}}<br ng-if="station.address2">{{station.address2}}<br>{{station.commune}}</p>
-  <div id="details-map" style="height:250px; width:100%; margin:0 0 40px"></div>
+    <div class="list card">
+      <div class="item item item-divider">
+          <h2 style="margin-top:10px;">Informations</h2>
+      </div>
+      <p class="item item-text-wrap" style="margin-top: -1px;">
+          {{station.address}}
+          <br ng-if="station.address2">{{station.address2}}<br>{{station.commune}}
+      </p>
+    </div>
+
+    <div id="details-map" style="height:250px; width:100%; margin:0 0 40px"></div>
+    
+
   </div>
-  </div>
+</div>

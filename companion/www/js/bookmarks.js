@@ -32,7 +32,7 @@ angular.module('vc.bookmarks', [])
     Stations.addBookmark(station);
   //TODO Request to push add operation
   }
-  $scope.getColor = function(elem) {
+  /*$scope.getColor = function(elem) {
     if (elem < 3) {
       return "color: red";
     } else if (3 <= elem && elem <= 5) {
@@ -44,12 +44,12 @@ angular.module('vc.bookmarks', [])
 
   $scope.selectBookmark = function(bookmarkId) {
     $scope.selectedBm = Bookmarks.get(bookmarkId);
-    $scope.showList = false;
+    //$scope.showList = false;
     $scope.path = "/img/bookmark_gold.png";
   }
 
   $scope.back = function() {
-    $scope.showList = true;
+    //$scope.showList = true;
   }
 
   $scope.starClick = function() {
@@ -66,7 +66,7 @@ angular.module('vc.bookmarks', [])
       star = true;
       // add from bookmark
     }
-  }
+  }*/
 })
 
 .factory('Bookmarks', function() {
@@ -74,25 +74,20 @@ angular.module('vc.bookmarks', [])
 
       // TODO must have lat and lng for bookmarks
   var bookmarks = [{
-    id: 0,
+    id: 1,
     name: 'Bellecour',
     bike:'4',
     parking:'6'
   }, {
-    id: 1,
+    id: 2,
     name: 'Part Dieu',
     bike:'2',
     parking:'10'
   }, {
-    id: 2,
+    id: 3,
     name: 'Cordelier',
     bike:'1',
     parking:'0'
-  }, {
-    id: 3,
-    name: 'Charpennes',
-    bike:'10',
-    parking:'6'
   }];
 
   return {
@@ -110,6 +105,7 @@ angular.module('vc.bookmarks', [])
       }
       return null;
     }
+      
   };
 });
 
