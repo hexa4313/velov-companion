@@ -299,6 +299,10 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 	margin-top: 30px;
 }
 
+.ac-tooltip{
+	z-index: 10;
+}
+
 /*---------------------- login PAGE ------------------------------------*/
 
 

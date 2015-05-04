@@ -10,23 +10,6 @@ angular.module('vc.perf', ['angularCharts'])
 
         }
 
-        $scope.config = {
-            title: 'performance',
-            tooltips: true,
-            labels: false,
-            mouseover: function() {},
-            mouseout: function() {},
-            click: function() {},
-            legend: {
-              display: true,
-              //could be 'left, right'
-              position: 'right'
-            }
-          };
-
-
-
-
         $scope.perfs = [];
             $scope.perfs =  [{
                 datePerf : new Date(),
@@ -48,6 +31,19 @@ angular.module('vc.perf', ['angularCharts'])
                 },
             ];
 
+        $scope.config = {
+            title: 'performance',
+            tooltips: true,
+            labels: false,
+            click : function() {},
+            mouseover : function() {},
+            mouseout : function() {},
+            legend: {
+              display: true,
+              position: 'right'
+            }
+        };
+
         Date.prototype.yyyymmdd = function() {
            var yyyy = this.getFullYear().toString();
            var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
@@ -55,26 +51,28 @@ angular.module('vc.perf', ['angularCharts'])
            return  (dd[1]?dd:"0"+dd[0]) + "/" + (mm[1]?mm:"0"+mm[0]) + "/"+ yyyy ; // padding
         };
 
-        console.log($scope.perfs[1].datePerf.yyyymmdd());
-
         $scope.data = {
             series: ['Performance'],
             data: [{
               x: $scope.perfs[0].datePerf.yyyymmdd(),
               y: [parseInt($scope.perfs[0].duree)],
-              tooltip: "this is tooltip"
+              tooltip: $scope.perfs[0].datePerf.yyyymmdd() + ": "+ $scope.perfs[0].duree
             }, {
               x: "Jour 2",
-              y: [parseInt($scope.perfs[1].duree)]
+              y: [parseInt($scope.perfs[1].duree)],
+              tooltip: $scope.perfs[0].datePerf.yyyymmdd() + ": "+ $scope.perfs[0].duree
             }, {
               x: "Jour 3",
-              y: [40]
+              y: [40],
+              tooltip: $scope.perfs[0].datePerf.yyyymmdd() + ": 40mn"
             }, {
               x: "Jour 4",
-              y: [0]
+              y: [0],
+              tooltip: $scope.perfs[0].datePerf.yyyymmdd() + ": 0mn"
             }, {
               x: "Jour 5",
-              y: [30]
+              y: [30],
+              tooltip: $scope.perfs[0].datePerf.yyyymmdd() + ": 30mn"
             }]
           };
         /*
