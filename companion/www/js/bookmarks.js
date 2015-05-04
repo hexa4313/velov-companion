@@ -1,14 +1,36 @@
 angular.module('vc.bookmarks', [])
 
-.controller('BookmarksCtrl', function($scope, $rootScope, Bookmarks) {
+.controller('BookmarksCtrl', function($scope, $rootScope, Services, UserService, Bookmarks, Stations) {
 
     $rootScope.pageTitle = "Favoris";
     $scope.showList = true;
+    $scope.user = UserService.getUser();
+    $scope.isBookmark = false;
     $scope.bookmarks = Bookmarks.all();
     var star = true;
 
-  $scope.remove = function(bookmark) {
+      // TODO Remove Bookmarks factory
+    $scope.init = function() {
+
+      Services.getBookmarks($scope.user.id).then(function(result){
+        console.log(result);
+            $scope.bookmarks = result;
+            Stations.setStations(result);
+      },
+        // error handling
+      function(){
+            console.log("Erreur sur l'obtention des favoris !")
+      });
+    }
+  $scope.remove =  function(bookmark) {
+    //TODO Request to push delete operation
     Bookmarks.remove(bookmark);
+    Stations.remove(bookmark.id);
+  }
+
+  $scope.add =  function(station) {
+    Stations.addBookmark(station);
+  //TODO Request to push add operation
   }
   /*$scope.getColor = function(elem) {
     if (elem < 3) {

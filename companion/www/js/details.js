@@ -38,6 +38,7 @@ angular.module('vc.details', ['ngStorage'])
       // Case the user has already selected a from station
       var idStation = parseInt($stateParams.stationId);
       $scope.station = Stations.getStationByNumber(idStation);
+      console.log($scope.station);
   }
   else{
       $state.go('home');

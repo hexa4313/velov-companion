@@ -2,23 +2,21 @@
  * Created by Modou on 30/04/2015.
  */
 
-angular.module('vc').factory('Services', function ($http) {
+angular.module('vc').factory('Services', function ($http, VCConstants) {
+
 
     return {
-        discover: function (currentPosition) {
+        discover: function (currentPosition, radius) {
+            if(!radius) {
+                radius = 1000;
+            }
             // $http returns a promise, which has a then function, which also returns a promise
-            var url = ''; //'https://download.data.grandlyon.com/ws/rdata/jcd_jcdecaux.jcdvelov/all.json';
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station?';
+            url += "lng=" + currentPosition.lng +
+                   "&lat=" + currentPosition.lat +
+                   "&radius=" + radius;
             return $http.get(url).then(function (response) {
-                var stations = [];
-                // Convert stations arrays to station objects
-                /*for(entry of response.data.values) {
-                    var station = {};
-                    for(var i=0; i < entry.length; i++) {
-                        station[response.data.fields[i]] = entry[i];
-                    }
-                    stations.push(station);
-                }*/
-                return stations;
+                return response.data;
             });
         },
         getUser: function (userID) {
@@ -51,11 +49,32 @@ angular.module('vc').factory('Services', function ($http) {
                 return response.data;
             });
         },
+        getAllStations: function (currentPosition, radius) {
+            if(!radius) {
+                radius = 1000000;
+            }
+            // $http returns a promise, which has a then function, which also returns a promise
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station?';
+            url += "lng=" + currentPosition.lng +
+            "&lat=" + currentPosition.lat +
+            "&radius=" + radius;
+            return $http.get(url).then(function (response) {
+                return response.data;
+            });
+        },
 
         startBike: function(userID, departureLocation, dateDepart) {
             return $http.put('URL').then(function (response) {
                 return response.data;
             });
         }
+    };
+});
+
+angular.module('vc').factory('VCConstants', function () {
+    return {
+        DOMAIN_URL: 'http://localhost',
+        PORT: '5000',
+        PATH: 'api'
     };
 });

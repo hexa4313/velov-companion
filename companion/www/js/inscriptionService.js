@@ -1,9 +1,9 @@
 angular.module('vc.inscriptionService', [])
 
-.service('inscriptionService', function($q) {
+.service('inscriptionService', function($q,UserService) {
     var user = null;
 
-        function inscription(first_name,last_name,email,password,birthday, http) {
+        function inscription(first_name,last_name,email,password,birthday,numAbonne,pin, http) {
 
             //user = "apres";
 
@@ -25,9 +25,10 @@ angular.module('vc.inscriptionService', [])
                     "password": password,
                     "id": "89101112",
                     "catSport": "sportif",
-                    "numAbonne": "123456",
-                    "codePin": "2345"
+                    "numAbonne": numAbonne,
+                    "codePin": pin
                   };
+                 UserService.setUser(user);
                  deferred.resolve('Welcome ' + first_name + '!');
 
             

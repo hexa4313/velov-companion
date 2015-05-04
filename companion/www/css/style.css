@@ -288,6 +288,7 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 	color : #0078A8;
 }
 
+
 .chart {
 	width: 100%;
  	height: 300px;
@@ -297,4 +298,18 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 .listPerf {
 	margin-top: 30px;
 }
+
+/*---------------------- login PAGE ------------------------------------*/
+
+.item .item-divider #login {
+  /*width: 200px;*/
+}
+
+.inscription{
+    padding:16px;
+}
+    
+.inscription #inscription{
+}
+
 
