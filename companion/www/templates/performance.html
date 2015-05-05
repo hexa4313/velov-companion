@@ -1,24 +1,21 @@
 
 <div style="margin-bottom: 20px;">
 
-<div 
-  data-ac-chart="'bar'" 
-  data-ac-data="data" 
-  data-ac-config="config" 
-  class="chart">
+<div class="graph-display" ng-controller="PerformanceCtrl" >
+    <canvas id="bar" class="chart chart-line" data="dataPerf.data" labels="dataPerf.labels" colours="dataPerf.colours"></canvas> 
 </div>
 
 
 </div>
 <ion-list >
   <div class="listPerf">
-      <div ng-repeat="perf in perfs">
+      <div class="test" ng-repeat="perf in perfs">
         <ion-item class="item-stable"
                   ng-click="toggleGroup(perf)"
                   ng-class="{active: isGroupShown(perf)}">
             <i class="icon" ng-class="isGroupShown(perf) ? 'ion-minus' : 'ion-plus'"></i>
             &nbsp;
-             {{perf.datePerf | date:'dd MM yyyy'}} : de {{perf.stationDepart}} à {{perf.stationArrivee}}
+             {{perf.datePerf | date:'dd/MM/yyyy'}} : de {{perf.stationDepart}} à {{perf.stationArrivee}}
         </ion-item>
         <ion-item class="item-accordion"
                   ng-show="isGroupShown(perf)">
@@ -26,7 +23,6 @@
             <span class="input-label">Durée :  {{perf.duree}}</span>
             <span class="input-label">Vitesse :  {{perf.vitesse}}</span>
         </ion-item>
-    </div>
+      </div>
   </div>
-
 </ion-list>

@@ -19,13 +19,13 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        /*setAuthToken : function(token) {
+        setAuthToken : function(token) {
             var authData = "id: "+ token;
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authData;
         },
         clearAuthToken : function() {
             $http.defaults.headers.common['Authorization'] = 'Basic';
-        },*/
+        },
         sign: function (data) {
 
             // $http returns a promise, which has a then function, which also returns a promise
@@ -57,27 +57,22 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        getUser: function (userID) {
-            return $http.get('url??').then(function (response) {
-                return response.data;
-            });
-        },
-        getPerformance: function (userID) {
+        getPerformance: function () { // TODO add Token
             var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/performance';
+            authData = "id : " + token;
             return $http.get(url).then(function (response) {
                 return response.data;
             });
         },
         createPerformance: function (perf) {
             var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/performance';
-            return $http.post(url).then(function (response) {
+            return $http.post(url, perf).then(function (response) {
                 return response.data;
             });
         },
-        getBookmarks: function (token) {
+        getBookmarks: function () {
             var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station/bookmark/';
-            return $http.get(url, {
-                headers: {'Authorization': 'Basic '+ token}}).then(function (response) {
+            return $http.get(url).then(function (response) {
                 return response.data;
             });
         },
@@ -95,18 +90,14 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        search: function (str) {
-            return $http.get('url??').then(function (response) {
-                return response.data;
-            });
-        },
         getRoadmap: function (departure, destination) { //locations {lat, lng}
             return $http.get('url??').then(function (response) {
                 return response.data;
             });
         },
-        getStation: function (idStation) {
-            return $http.get('url??').then(function (response) {
+        getStation: function (idStation) { //TODO
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station?'+ idStation;
+            return $http.get(url).then(function (response) {
                 return response.data;
             });
         },
@@ -129,7 +120,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        autocomplete: function(currentPosition, query) {
+        autocomplete: function(currentPosition, query) { // TODO
             var url = "http://photon.komoot.de/api/?";
             url += "q=" + query
                    "lon=" + currentPosition.lng +

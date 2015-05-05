@@ -2,11 +2,12 @@ angular.module('vc.inscriptionController', [])
 
 .controller('inscriptionController', function($scope,$rootScope, Services, LoginService,inscriptionService,UserService, $ionicPopup, $state, $http) {
     
+    $rootScope.pageTitle = "Inscription";
     $scope.data = {};
     $scope.user = {};
 
 
-        $scope.inscription = function() {
+        $scope.register = function() {
 
             Services.sign($scope.data).then(function(user){
                    $scope.user = user;

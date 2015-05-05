@@ -110,6 +110,10 @@
   }
 }
 
+.tabs {
+	padding-top:0px;
+}
+
 /*---------------------- DETAILS PAGE ------------------------------------*/
 .details-numbers {
 	width:100%;
@@ -293,18 +297,17 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 }
 
 
-.chart {
-	width: 100%;
- 	height: 300px;
- 	margin:15px;
-}
-
 .listPerf {
 	margin-top: 30px;
 }
 
-.ac-tooltip{
-	z-index: 10;
+
+.graph-display {
+	width:80%;
+	height:auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
 }
 
 /*---------------------- login PAGE ------------------------------------*/
@@ -317,4 +320,11 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
 a.current {
   background:red;
   color:white;
+}
+
+ion-content.scroll-content.ionic-scroll.has-header{
+    bottom:44px;
+}
+.test{
+    position:relative;
 }

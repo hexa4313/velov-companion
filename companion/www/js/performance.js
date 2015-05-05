@@ -1,11 +1,24 @@
 /**
  * Created by Modou on 02/05/2015.
  */
-angular.module('vc.perf', ['angularCharts'])
+angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
 
     .controller('PerformanceCtrl', function($scope,$rootScope, Services, UserService){
 
         $rootScope.pageTitle = "Performances";
+
+        $rootScope.$on('unauthorized', function() {
+            UserService.setUserToken(null);
+            getToken()
+                .then(function (token) {
+                    console.log(token);
+                    UserService.setUserToken(token);
+                }, function (error) {
+                    console.error(error)
+                })
+
+        });
+
 
         function getToken(){
 
@@ -50,9 +63,11 @@ angular.module('vc.perf', ['angularCharts'])
                         })
                 }
 
-                Services.getPerformance(token).then(function (result) {
+                // set Authorization token
+                Services.setAuthToken(token.hash);
+                Services.getPerformance().then(function (result) {
                         console.log(result);
-                       // $scope.perfs = result;
+                       // $scope.perfs = result; TODO
                         UserService.setPerformances(result);
                     },
                     // error handling
@@ -82,51 +97,30 @@ angular.module('vc.perf', ['angularCharts'])
                     stationArrivee : "Part-Dieu"
                 },
             ];
+            
 
-        $scope.config = {
-            title: 'performance',
-            tooltips: true,
-            labels: false,
-            click : function() {},
-            mouseover : function() {},
-            mouseout : function() {},
-            legend: {
-              display: true,
-              position: 'right'
-            }
-        };
-
-        Date.prototype.yyyymmdd = function() {
-           var yyyy = this.getFullYear().toString();
+        Date.prototype.ddmm = function() {
+           //var yyyy = this.getFullYear().toString();
            var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
            var dd  = this.getDate().toString();
-           return  (dd[1]?dd:"0"+dd[0]) + "/" + (mm[1]?mm:"0"+mm[0]) + "/"+ yyyy ; // padding
+           return  (dd[1]?dd:"0"+dd[0]) + "/" + (mm[1]?mm:"0"+mm[0]); // padding
         };
 
-        $scope.data = {
-            series: ['Performance'],
-            data: [{
-              x: $scope.perfs[0].datePerf.yyyymmdd(),
-              y: [parseInt($scope.perfs[0].duree)],
-              tooltip: $scope.perfs[0].datePerf.yyyymmdd() + ": "+ $scope.perfs[0].duree
-            }, {
-              x: "Jour 2",
-              y: [parseInt($scope.perfs[1].duree)],
-              tooltip: $scope.perfs[0].datePerf.yyyymmdd() + ": "+ $scope.perfs[0].duree
-            }, {
-              x: "Jour 3",
-              y: [40],
-              tooltip: $scope.perfs[0].datePerf.yyyymmdd() + ": 40mn"
-            }, {
-              x: "Jour 4",
-              y: [0],
-              tooltip: $scope.perfs[0].datePerf.yyyymmdd() + ": 0mn"
-            }, {
-              x: "Jour 5",
-              y: [30],
-              tooltip: $scope.perfs[0].datePerf.yyyymmdd() + ": 30mn"
+
+        $scope.dataPerf  = {
+            "series": ["Performances"],
+            "data": [[parseInt($scope.perfs[1].duree), "10", "30", "45", "40", "5", "0", "20", "30", "50"]],
+            "labels": [$scope.perfs[0].datePerf.ddmm(), "02", "03", "04", "05", "06", "07", "08", "09", "10"],
+            "colours": [{ // default
+              "fillColor": "rgba(224, 108, 112, 0.6)",
+              "strokeColor": "rgba(207,100,103,1)",
+              "pointColor": "rgba(220,220,220,1)",
+              "pointStrokeColor": "#fff",
+              "pointHighlightFill": "#fff",
+              "pointHighlightStroke": "rgba(151,187,205,0.8)"
             }]
-          };
+        };
+
         /*
          * if given group is the selected group, deselect it
          * else, select the given group
