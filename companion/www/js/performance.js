@@ -50,7 +50,9 @@ angular.module('vc.perf', ['angularCharts'])
                         })
                 }
 
-                Services.getPerformance(token).then(function (result) {
+                // set Authorization token
+                Services.setAuthToken(token.hash);
+                Services.getPerformance().then(function (result) {
                         console.log(result);
                        // $scope.perfs = result;
                         UserService.setPerformances(result);

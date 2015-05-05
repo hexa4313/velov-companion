@@ -53,7 +53,9 @@ angular.module('vc.bookmarks', [])
                     })
             }
 
-          Services.getBookmarks(token).then(function(result){
+            // set Authorization token
+            Services.setAuthToken(token.hash);
+          Services.getBookmarks().then(function(result){
             console.log(result);
                 $scope.bookmarks = result;
                 Stations.setStations(result);

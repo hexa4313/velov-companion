@@ -19,13 +19,13 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        /*setAuthToken : function(token) {
+        setAuthToken : function(token) {
             var authData = "id: "+ token;
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authData;
         },
         clearAuthToken : function() {
             $http.defaults.headers.common['Authorization'] = 'Basic';
-        },*/
+        },
         sign: function (data) {
 
             // $http returns a promise, which has a then function, which also returns a promise
@@ -57,8 +57,9 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        getPerformance: function (userID) { // TODO add Token
+        getPerformance: function () { // TODO add Token
             var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/performance';
+            authData = "id : " + token;
             return $http.get(url).then(function (response) {
                 return response.data;
             });
@@ -69,10 +70,9 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        getBookmarks: function (token) {
+        getBookmarks: function () {
             var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station/bookmark/';
-            return $http.get(url, {
-                headers: {'Authorization': 'Basic '+ token}}).then(function (response) {
+            return $http.get(url).then(function (response) {
                 return response.data;
             });
         },
