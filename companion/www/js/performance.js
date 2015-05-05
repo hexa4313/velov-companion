@@ -1,7 +1,7 @@
 /**
  * Created by Modou on 02/05/2015.
  */
-angular.module('vc.perf', ['angularCharts','chart.js', 'ui.bootstrap'])
+angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
 
     .controller('PerformanceCtrl', function($scope,$rootScope, Services, UserService){
 
