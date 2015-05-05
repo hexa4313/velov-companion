@@ -1,5 +1,5 @@
 
-<div id="listBookmarks" ng-show="showList">
+<div id="listBookmarks">
   <div class="card">
     <div class="item item-divider">
       <div class="container ">
@@ -13,8 +13,13 @@
 
     <div class="list list-inset item item-text-wrap">
         <ion-list>
+<<<<<<< HEAD
+          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="bookmark in bookmarks" type="item-text-wrap" href="#/details/{{bookmark.id}}">
+
+=======
           <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="bookmark in bookmarks" type="item-text-wrap" ng-click="selectBookmark(bookmark.id)" href="#/details/{{bookmark.id}}">
             
+>>>>>>> 8a66195afb7f1850653ddc85052d05d64c44e834
             <div class="container2">
               <div id="left"><h2>{{bookmark.name}}</h2></div>
               <div id="right">
@@ -47,7 +52,7 @@
     </div>
 
     <div class="containerDetail">
-      <div id="left"> 
+      <div id="left">
         <i class="icon ion-android-bicycle"></i> <br>
         <p style="{{getColor(selectedBm.bike)}}">{{selectedBm.bike}}</p>
       </div>
@@ -56,7 +61,7 @@
         <p style="{{getColor(selectedBm.parking)}}">{{selectedBm.parking}}</p>
       </div>
     </div>
-  
+
     <a href="#/roadmap/selectedStation/{{selectedBm.id}}" style="text-decoration: none">
         <button id="btnItineraire" class="button button-block button-assertive">
         Itinéraire
