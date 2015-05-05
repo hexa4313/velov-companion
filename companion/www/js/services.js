@@ -83,7 +83,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
 angular.module('vc').factory('VCConstants', function () {
     return {
         DOMAIN_URL: 'http://localhost',
-        PORT: '5000',
+        PORT: '8080',
         PATH: 'api'
     };
 });
