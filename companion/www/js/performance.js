@@ -121,8 +121,6 @@ angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
             }]
         };
 
-
-
         /*
          * if given group is the selected group, deselect it
          * else, select the given group

@@ -15,7 +15,7 @@
                   ng-class="{active: isGroupShown(perf)}">
             <i class="icon" ng-class="isGroupShown(perf) ? 'ion-minus' : 'ion-plus'"></i>
             &nbsp;
-             {{perf.datePerf | date:'dd MM yyyy'}} : de {{perf.stationDepart}} à {{perf.stationArrivee}}
+             {{perf.datePerf | date:'dd/MM/yyyy'}} : de {{perf.stationDepart}} à {{perf.stationArrivee}}
         </ion-item>
         <ion-item class="item-accordion"
                   ng-show="isGroupShown(perf)">
