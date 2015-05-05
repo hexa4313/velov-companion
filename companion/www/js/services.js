@@ -96,7 +96,8 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
             });
         },
         getStation: function (idStation) { //TODO
-            return $http.get('url??').then(function (response) {
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station?'+ idStation;
+            return $http.get(url).then(function (response) {
                 return response.data;
             });
         },

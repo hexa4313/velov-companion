@@ -7,7 +7,7 @@ angular.module('vc.inscriptionController', [])
     $scope.user = {};
 
 
-        $scope.inscription = function() {
+        $scope.register = function() {
 
             Services.sign($scope.data).then(function(user){
                    $scope.user = user;

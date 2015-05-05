@@ -1,6 +1,6 @@
 angular.module('vc.loginController', [])
 
-.controller('loginController', function($scope,$rootScope, Services, LoginService,UserService, $ionicPopup, $state, $http) {
+.controller('loginController', function($scope,$rootScope, Services, UserService, $ionicPopup, $state) {
 
     $rootScope.pageTitle = "Connexion";
     $scope.data = {};
@@ -26,6 +26,7 @@ angular.module('vc.loginController', [])
             });
         });
     }*/
+
         $scope.login = function() {
             Services.login($scope.data.email, $scope.data.password).then(function(user){
                     UserService.setUser(user);

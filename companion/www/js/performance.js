@@ -7,6 +7,17 @@ angular.module('vc.perf', ['angularCharts'])
 
         $rootScope.pageTitle = "Performances";
 
+        $rootScope.$on('unauthorized', function() {
+            UserService.setUserToken(null);
+            getToken()
+                .then(function (token) {
+                    console.log(token);
+                    UserService.setUserToken(token);
+                }, function (error) {
+                    console.error(error)
+                })
+
+        });
         function getToken(){
 
             Services.getToken($scope.user.email, $scope.user.password).then(function(result){
@@ -54,7 +65,7 @@ angular.module('vc.perf', ['angularCharts'])
                 Services.setAuthToken(token.hash);
                 Services.getPerformance().then(function (result) {
                         console.log(result);
-                       // $scope.perfs = result;
+                       // $scope.perfs = result; TODO
                         UserService.setPerformances(result);
                     },
                     // error handling
