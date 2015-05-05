@@ -1,11 +1,8 @@
 
 <div style="margin-bottom: 20px;">
 
-<div 
-  data-ac-chart="'bar'" 
-  data-ac-data="data" 
-  data-ac-config="config" 
-  class="chart">
+<div class="graph-display" ng-controller="PerformanceCtrl" >
+    <canvas id="bar" class="chart chart-line" data="ocw.data" labels="ocw.labels" colours="ocw.colours"></canvas> 
 </div>
 
 
@@ -26,7 +23,6 @@
             <span class="input-label">Durée :  {{perf.duree}}</span>
             <span class="input-label">Vitesse :  {{perf.vitesse}}</span>
         </ion-item>
-    </div>
+      </div>
   </div>
-
 </ion-list>
