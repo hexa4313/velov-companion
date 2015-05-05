@@ -1,5 +1,9 @@
 /*---------------------- HOME PAGE ------------------------------------*/
 
+.home-map {
+	height: 90vh;
+	width : 100vw;
+}
 .station-red-marker, .station-grey-marker{
 	width:35px;
 	height: 35px;
