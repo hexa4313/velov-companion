@@ -310,4 +310,7 @@ ion-tabs.tabs-color-active-positive .tab-item.activated {
     padding: Opx;
 }
 
-  
+a.current {
+  background:red;
+  color:white;
+}
