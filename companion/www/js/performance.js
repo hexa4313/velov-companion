@@ -1,12 +1,12 @@
 /**
  * Created by Modou on 02/05/2015.
  */
-angular.module('vc.perf', ['angularCharts'])
+angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
 
     .controller('PerformanceCtrl', function($scope,$rootScope, Services, UserService){
 
         $rootScope.pageTitle = "Performances";
-
+        
         $rootScope.$on('unauthorized', function() {
             UserService.setUserToken(null);
             getToken()
@@ -18,6 +18,23 @@ angular.module('vc.perf', ['angularCharts'])
                 })
 
         });
+        
+        var json = {
+            "series": ["SeriesA"],
+            "data": [["90", "99", "80", "91", "76", "75", "60", "67", "59", "55"]],
+            "labels": ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
+            "colours": [{ // default
+              "fillColor": "rgba(224, 108, 112, 0.6)",
+              "strokeColor": "rgba(207,100,103,1)",
+              "pointColor": "rgba(220,220,220,1)",
+              "pointStrokeColor": "#fff",
+              "pointHighlightFill": "#fff",
+              "pointHighlightStroke": "rgba(151,187,205,0.8)"
+            }]
+        };
+        $scope.ocw = json;
+
+
         function getToken(){
 
             Services.getToken($scope.user.email, $scope.user.password).then(function(result){
@@ -106,7 +123,7 @@ angular.module('vc.perf', ['angularCharts'])
             legend: {
               display: true,
               position: 'right'
-            }
+            },
         };
 
         Date.prototype.yyyymmdd = function() {
