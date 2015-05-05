@@ -2,6 +2,7 @@ angular.module('vc.inscriptionController', [])
 
 .controller('inscriptionController', function($scope,$rootScope, Services, LoginService,inscriptionService,UserService, $ionicPopup, $state, $http) {
     
+    $rootScope.pageTitle = "Inscription";
     $scope.data = {};
     $scope.user = {};
 

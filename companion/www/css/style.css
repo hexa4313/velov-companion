@@ -314,3 +314,7 @@ a.current {
   background:red;
   color:white;
 }
+
+ion-content.scroll-content.ionic-scroll.has-header{
+    bottom:44px;
+}
