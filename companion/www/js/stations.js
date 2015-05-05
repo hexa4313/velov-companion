@@ -38,12 +38,7 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                 };
             },
             hasBookmark : function () {
-                if($localStorage['bookmarks']) {
-                    return true;
-                }
-                else {
-                    return false;
-                }
+                return ($localStorage['bookmarks']? true : false)
             },
             removeBookmark: function(idBm) {
                 if($localStorage['bookmarks']) {

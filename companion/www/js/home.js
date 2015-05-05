@@ -133,5 +133,5 @@ angular.module('vc.home', ['ngStorage'])
         }
     })("main-map");
 
-    $scope.start();
+		$scope.start();
 });

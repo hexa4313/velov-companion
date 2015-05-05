@@ -27,7 +27,7 @@ angular.module('vc.loginController', [])
         });
     }*/
         $scope.login = function() {
-            Services.login(data.mail, data.passw).then(function(user){
+            Services.login($scope.data.email, $scope.data.password).then(function(user){
                     UserService.setUser(user);
                     $state.reload();
                 },

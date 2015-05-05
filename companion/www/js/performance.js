@@ -3,11 +3,63 @@
  */
 angular.module('vc.perf', ['angularCharts'])
 
-    .controller('PerformanceCtrl', function($scope,$rootScope, Services){
+    .controller('PerformanceCtrl', function($scope,$rootScope, Services, UserService){
 
         $rootScope.pageTitle = "Performances";
+
+        function getToken(){
+
+            Services.getToken($scope.user.email, $scope.user.password).then(function(result){
+                    console.log(result);
+                    UserService.setUserToken(result);
+                    deferred.resolve(result);
+                },
+                // error handling
+                function(){
+                    console.log("Erreur sur l'obtention des favoris !")
+                });
+            var deferred = $q.defer();
+
+            function onError(err) {
+                console.log('get token error');
+                console.log(err);
+                deferred.reject('Cannot get a token for the user');
+            };
+            return deferred.promise;
+        }
+
+
         $scope.init = function () {
 
+            if(UserService.hasPerformances())
+            {
+                //$scope.perfs = UserService.getPerformances();
+            }
+            else {
+                var token;
+                if (UserService.hasUserToken()) {
+                    token = UserService.getUserToken();
+                }
+                else {
+                    var promise = getToken()
+                        .then(function (token) {
+                            console.log(token);
+                            token = token;
+                        }, function (error) {
+                            console.error(error)
+                        })
+                }
+
+                Services.getPerformance(token).then(function (result) {
+                        console.log(result);
+                       // $scope.perfs = result;
+                        UserService.setPerformances(result);
+                    },
+                    // error handling
+                    function () {
+                        console.log("Erreur sur l'obtention des favoris !")
+                    });
+            }
         }
 
         $scope.perfs = [];
