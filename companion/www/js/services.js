@@ -57,12 +57,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        getUser: function (userID) {
-            return $http.get('url??').then(function (response) {
-                return response.data;
-            });
-        },
-        getPerformance: function (userID) {
+        getPerformance: function (userID) { // TODO add Token
             var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/performance';
             return $http.get(url).then(function (response) {
                 return response.data;
@@ -70,7 +65,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
         },
         createPerformance: function (perf) {
             var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/performance';
-            return $http.post(url).then(function (response) {
+            return $http.post(url, perf).then(function (response) {
                 return response.data;
             });
         },
@@ -95,17 +90,12 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        search: function (str) {
-            return $http.get('url??').then(function (response) {
-                return response.data;
-            });
-        },
         getRoadmap: function (departure, destination) { //locations {lat, lng}
             return $http.get('url??').then(function (response) {
                 return response.data;
             });
         },
-        getStation: function (idStation) {
+        getStation: function (idStation) { //TODO
             return $http.get('url??').then(function (response) {
                 return response.data;
             });
@@ -129,7 +119,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        autocomplete: function(currentPosition, query) {
+        autocomplete: function(currentPosition, query) { // TODO
             var url = "http://photon.komoot.de/api/?";
             url += "q=" + query
                    "lon=" + currentPosition.lng +
