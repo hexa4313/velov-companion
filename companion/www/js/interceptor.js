@@ -1,10 +1,12 @@
 /**
  * Created by Modou on 05/05/2015.
  */
-angular.module('vc').service('APIInterceptor', function($rootScope, Services) {
+angular.module('vc').factory('APIInterceptor', function($rootScope, Services) {
     var service = this;
 
-    service.request = function(config) {
+    return {
+
+        request :function (config) {
         var currentToken = Services.getUserToken();
         var access_token = "id : " + currentToken.hash;
 
@@ -12,12 +14,13 @@ angular.module('vc').service('APIInterceptor', function($rootScope, Services) {
             config.headers.authorization = access_token;
         }
         return config;
-    };
+    },
 
-    service.responseError = function(response) {
+    responseError: function (response) {
         if (response.status === 401) {
             $rootScope.$broadcast('unauthorized');
         }
         return response;
-    };
+    }
+}
 });

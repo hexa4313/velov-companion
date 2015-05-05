@@ -6,7 +6,7 @@ angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
     .controller('PerformanceCtrl', function($scope,$rootScope, Services, UserService){
 
         $rootScope.pageTitle = "Performances";
-        
+
         $rootScope.$on('unauthorized', function() {
             UserService.setUserToken(null);
             getToken()
