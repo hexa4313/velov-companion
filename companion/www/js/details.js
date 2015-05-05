@@ -77,7 +77,7 @@ angular.module('vc.details', ['ngStorage'])
     var defaultCenter = {
       lng: 4.871454,
       lat: 45.784011,
-      zoom: 13
+      zoom: 15
     }
 
     // Max bounds for the map - restrained to Lyon
@@ -130,7 +130,7 @@ angular.module('vc.details', ['ngStorage'])
     });
 
     // Get the station position
-    var stationPos = L.latLng(defaultCenter.lat, defaultCenter.lng);
+    var stationPos = L.latLng(stt.position.latitude, stt.position.longitude);
 
     // Adds the target station marker
     var marker = L.marker(stationPos, {
