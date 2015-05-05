@@ -64,4 +64,5 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
 
         // Start controller
         $scope.init();
+
     });

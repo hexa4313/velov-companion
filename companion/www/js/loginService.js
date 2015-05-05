@@ -1,14 +1,8 @@
 angular.module('vc.loginService', [])
 
 
-.service('LoginService', function($q) {
+.service('LoginService', function($q,UserService) {
     var user = null;
-        function isLogged(){
-           return (user == null ? false : true);
-        }
-        function getUser() {
-            return user;
-        }
 
         function loginUser(name, pw, numAbonne, codePin, http) {
 
@@ -26,7 +20,7 @@ angular.module('vc.loginService', [])
             
            
             
-            if (name == 'jmonnoire@gmail.com' && pw == 'secret') {
+            if (name != null && pw != null) {
                  user = {
                     "username": name,
                     "first_name": "justine",
@@ -35,9 +29,10 @@ angular.module('vc.loginService', [])
                     "password": pw,
                     "id": "89101112",
                     "catSport": "sportif",
-                    "numAbonne": numAbonne,
-                    "codePin": codePin
+                    "numAbonne": "numAbonne",
+                    "codePin": "codePin"
                   };
+                  UserService.setUser(user);
                  deferred.resolve('Welcome ' + name + '!');
 
             } else {
@@ -55,8 +50,6 @@ angular.module('vc.loginService', [])
         }
 
         return{
-            isLogged: isLogged,
-            getUser: getUser,
             loginUser: loginUser
         }
 })

@@ -2,9 +2,8 @@
  * Created by Modou on 30/04/2015.
  */
 
-angular.module('vc').factory('Services', function ($http) {
+angular.module('vc').factory('Services', function ($http, VCConstants) {
 
-    const HOST_URL = "http://localhost:5000/api/";
 
     return {
         discover: function (currentPosition, radius) {
@@ -12,7 +11,7 @@ angular.module('vc').factory('Services', function ($http) {
                 radius = 1000;
             }
             // $http returns a promise, which has a then function, which also returns a promise
-            var url = HOST_URL + 'station?';
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station?';
             url += "lng=" + currentPosition.lng +
                    "&lat=" + currentPosition.lat +
                    "&radius=" + radius;
@@ -50,6 +49,19 @@ angular.module('vc').factory('Services', function ($http) {
                 return response.data;
             });
         },
+        getAllStations: function (currentPosition, radius) {
+            if(!radius) {
+                radius = 1000000;
+            }
+            // $http returns a promise, which has a then function, which also returns a promise
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station?';
+            url += "lng=" + currentPosition.lng +
+            "&lat=" + currentPosition.lat +
+            "&radius=" + radius;
+            return $http.get(url).then(function (response) {
+                return response.data;
+            });
+        },
 
         startBike: function(userID, departureLocation, dateDepart) {
             return $http.put('URL').then(function (response) {
@@ -65,5 +77,13 @@ angular.module('vc').factory('Services', function ($http) {
                 return response;
             });
         }
+    };
+});
+
+angular.module('vc').factory('VCConstants', function () {
+    return {
+        DOMAIN_URL: 'http://localhost',
+        PORT: '5000',
+        PATH: 'api'
     };
 });

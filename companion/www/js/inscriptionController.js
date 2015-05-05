@@ -1,6 +1,6 @@
 angular.module('vc.inscriptionController', [])
 
-.controller('inscriptionController', function($scope,$rootScope, LoginService,inscriptionService, $ionicPopup, $state, $http) {
+.controller('inscriptionController', function($scope,$rootScope, LoginService,inscriptionService,UserService, $ionicPopup, $state, $http) {
     
     $scope.data = {};
     $scope.user = {};
@@ -8,7 +8,8 @@ angular.module('vc.inscriptionController', [])
     
      $scope.inscription = function() {
      inscriptionService.inscription($scope.data.first_name, $scope.data.last_name,$scope.data.email,$scope.data.password,$scope.data.birthday,$scope.data.numAbonne,$scope.data.codePin, $http).success(function(data) {
-            LoginService.loginUser($scope.data.email, $scope.data.password,$scope.data.numAbonne,$scope.data.codePin, $http);
+         $scope.user=UserService.getUser();
+         LoginService.loginUser($scope.user.email, $scope.user.password,$scope.user.numAbonne,$scope.user.codePin, $http);
             $state.go("profil");
             
         }).error(function(data) {
