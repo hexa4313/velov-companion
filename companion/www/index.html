@@ -54,6 +54,10 @@
     <script src="js/userService.js"></script>
     
     <script>
+        function start(){ 
+            var y = document.getElementById("1"); 
+        y.classList.add("current");
+        }
         function change_class(id) { 
         var a = document.getElementById("1"); 
         var b = document.getElementById("2"); 
@@ -69,7 +73,7 @@
     </script>
 
   </head>
-  <body ng-app="vc">
+  <body ng-app="vc" onLoad="start()">
 
     <ion-pane>
       <ion-header-bar class="bar-assertive">
