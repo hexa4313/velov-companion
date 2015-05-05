@@ -118,7 +118,9 @@ angular.module('vc.home', ['ngStorage'])
                     markerArray.push(marker);
                 }
                 var group = new L.featureGroup(markerArray);
-                map.fitBounds(group.getBounds().pad(0.1));
+                setTimeout(function(){
+                    map.fitBounds(group.getBounds().pad(0.1));
+                },500);
             },
 
             setPosition: function(position) {
