@@ -17,7 +17,27 @@ angular.module('vc').factory('UserService', function ($localStorage) {
         },
         logout: function(){
             $localStorage['user'] = null;
+        },
+        setUserToken: function (token) {
+
+            $localStorage['token'] = token;
+        },
+        getUserToken: function () {
+            return $localStorage['token'];
+        },
+        hasUserToken: function () {
+            return ($localStorage['token']? true : false);
+        },
+        setPerformances: function (stations) {
+            $localStorage['performance'] = stations;
+        },
+        getPerformances: function () {
+            return $localStorage['performance'];
+        },
+        hasPerformances: function () {
+            return ($localStorage['performance']? true : false);
         }
+
     };
 
 });

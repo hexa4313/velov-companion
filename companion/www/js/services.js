@@ -19,22 +19,31 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        sign: function (firstname, lastname, mail, passw, birthday) {
+        /*setAuthToken : function(token) {
+            var authData = "id: "+ token;
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + authData;
+        },
+        clearAuthToken : function() {
+            $http.defaults.headers.common['Authorization'] = 'Basic';
+        },*/
+        sign: function (data) {
 
             // $http returns a promise, which has a then function, which also returns a promise
-            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/user?';
-            url += "first_name=" + firstname +
-            "&last_name=" + lastname +
-            "&email=" + mail +
-            "&password=" + passw +
-            "&birthday=" + birthday;
-            return $http.post(url).then(function (response) {
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/user';
+            var signData = {
+                first_name: data.first_name,
+                last_name: data.last_name,
+                email: data.email,
+                password: data.password,
+                birthday: data.birthday
+            }
+            return $http.post(url, signData).then(function (response) {
                 return response.data;
             });
         },
-        getToken: function (mail, passw) {
-            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/login?';
-            url += "&email=" + mail +
+        login: function (mail, passw) {
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/user?';
+            url += "email=" + mail +
             "&password=" + passw;
             return $http.get(url).then(function (response) {
                 return response.data;
@@ -42,7 +51,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
         },
         getToken: function (mail, passw) {
             var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/token?';
-            url += "&email=" + mail +
+            url += "email=" + mail +
             "&password=" + passw;
             return $http.get(url).then(function (response) {
                 return response.data;
@@ -65,9 +74,10 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        getBookmarks: function (user) {
+        getBookmarks: function (token) {
             var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station/bookmark/';
-            return $http.get(url).then(function (response) {
+            return $http.get(url, {
+                headers: {'Authorization': 'Basic '+ token}}).then(function (response) {
                 return response.data;
             });
         },
