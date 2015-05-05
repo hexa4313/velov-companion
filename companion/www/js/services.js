@@ -19,6 +19,35 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
+        sign: function (firstname, lastname, mail, passw, birthday) {
+
+            // $http returns a promise, which has a then function, which also returns a promise
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/user?';
+            url += "first_name=" + firstname +
+            "&last_name=" + lastname +
+            "&email=" + mail +
+            "&password=" + passw +
+            "&birthday=" + birthday;
+            return $http.post(url).then(function (response) {
+                return response.data;
+            });
+        },
+        getToken: function (mail, passw) {
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/login?';
+            url += "&email=" + mail +
+            "&password=" + passw;
+            return $http.get(url).then(function (response) {
+                return response.data;
+            });
+        },
+        getToken: function (mail, passw) {
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/token?';
+            url += "&email=" + mail +
+            "&password=" + passw;
+            return $http.get(url).then(function (response) {
+                return response.data;
+            });
+        },
         getUser: function (userID) {
             return $http.get('url??').then(function (response) {
                 return response.data;
@@ -26,7 +55,13 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
         },
         getPerformance: function (userID) {
             var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/performance';
-            return $http.get('url??').then(function (response) {
+            return $http.get(url).then(function (response) {
+                return response.data;
+            });
+        },
+        createPerformance: function (perf) {
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/performance';
+            return $http.post(url).then(function (response) {
                 return response.data;
             });
         },
@@ -55,7 +90,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        getRoadmap: function (departture, destination) { //locations {lat, lng}
+        getRoadmap: function (departure, destination) { //locations {lat, lng}
             return $http.get('url??').then(function (response) {
                 return response.data;
             });

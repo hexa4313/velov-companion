@@ -5,15 +5,7 @@ angular.module('vc.inscriptionService', [])
 
         function inscription(first_name,last_name,email,password,birthday,numAbonne,pin, http) {
 
-            //user = "apres";
 
-            /*http.get('http://rest-service.guides.spring.io/greeting').
-            success(function(data) {
-                var alertPopup = ionicpopup.alert({
-                    title: 'Login failed!',
-                    template: data.content
-                });
-            });*/
             var deferred = $q.defer();
             var promise = deferred.promise;
          

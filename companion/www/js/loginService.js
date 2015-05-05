@@ -4,22 +4,16 @@ angular.module('vc.loginService', [])
 .service('LoginService', function($q,UserService) {
     var user = null;
 
-        function loginUser(name, pw, numAbonne, codePin, http) {
+        function loginUser(name, pw, numAbonne, codePin) {
 
             //user = "apres";
 
-            /*http.get('http://rest-service.guides.spring.io/greeting').
-            success(function(data) {
-                var alertPopup = ionicpopup.alert({
-                    title: 'Login failed!',
-                    template: data.content
-                });
-            });*/
             var deferred = $q.defer();
             var promise = deferred.promise;
-            
-           
-            
+
+
+
+            //$http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
             if (name != null && pw != null) {
                  user = {
                     "username": name,

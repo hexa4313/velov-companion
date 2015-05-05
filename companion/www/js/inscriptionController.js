@@ -1,12 +1,26 @@
 angular.module('vc.inscriptionController', [])
 
-.controller('inscriptionController', function($scope,$rootScope, LoginService,inscriptionService,UserService, $ionicPopup, $state, $http) {
+.controller('inscriptionController', function($scope,$rootScope, Services, LoginService,inscriptionService,UserService, $ionicPopup, $state, $http) {
     
     $scope.data = {};
     $scope.user = {};
-    
-    
-     $scope.inscription = function() {
+
+
+        $scope.inscription = function() {
+            Services.sign($scope.data.first_name, $scope.data.last_name,$scope.data.email,$scope.data.password,$scope.data.birthday).then(function(user){
+                   $scope.user = user;
+                    UserService.setUser(user);
+                    $state.go("profil");
+                },
+                // error handling
+                function(){
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Echec Inscription!',
+                        template: 'Veuillez réessayer !'
+                    });
+                });
+        }
+     /*$scope.inscription = function() {
      inscriptionService.inscription($scope.data.first_name, $scope.data.last_name,$scope.data.email,$scope.data.password,$scope.data.birthday,$scope.data.numAbonne,$scope.data.codePin, $http).success(function(data) {
          $scope.user=UserService.getUser();
          LoginService.loginUser($scope.user.email, $scope.user.password,$scope.user.numAbonne,$scope.user.codePin, $http);
@@ -18,5 +32,5 @@ angular.module('vc.inscriptionController', [])
                 template: 'Please retry!'
             });
         });
-     }
+     }*/
 })
