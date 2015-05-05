@@ -7,6 +7,28 @@ angular.module('vc.details', ['ngStorage'])
   $scope.path = "/img/bookmark_gold.png";
 
 
+      $scope.removeBookmark =  function(idStation) {
+
+        Services.removeBookmark(idStation).then(function(result){
+              console.log(result);
+              Stations.remove(idStation);
+            },
+            // error handling
+            function(){
+              console.log("Suppression d'un favoris impossible !")
+            });
+      }
+
+      $scope.addBookmark =  function(station) {
+        Services.addBookmark(station.id).then(function(result){
+              console.log(result);
+              Stations.addBookmark(station);
+            },
+            // error handling
+            function(){
+              console.log("Ajout d'un favoris impossible !")
+            });
+      }
   $scope.starClick = function() {
     console.log($scope.path);
     console.log(star);

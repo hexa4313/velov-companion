@@ -21,29 +21,6 @@ angular.module('vc.bookmarks', [])
             console.log("Erreur sur l'obtention des favoris !")
       });
     }
-  $scope.remove =  function(idStation) {
-
-    Services.removeBookmark(idStation).then(function(result){
-          console.log(result);
-          Stations.remove(idStation);
-        },
-        // error handling
-        function(){
-          console.log("Suppression d'un favoris impossible !")
-        });
-   // Bookmarks.remove(bookmark);
-  }
-
-  $scope.add =  function(station) {
-    Services.addBookmark(station.id).then(function(result){
-          console.log(result);
-          Stations.addBookmark(station);
-        },
-        // error handling
-        function(){
-          console.log("Ajout d'un favoris impossible !")
-        });
-  }
 
   $scope.starClick = function() {
     console.log($scope.path);
