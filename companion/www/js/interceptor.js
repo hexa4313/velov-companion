@@ -1,22 +1,20 @@
 /**
  * Created by Modou on 05/05/2015.
  */
-angular.module('vc').factory('APIInterceptor', function($rootScope, Services) {
-    var service = this;
+angular.module('vc').factory('APIInterceptor', function($rootScope, UserService) {
 
     return {
 
         request :function (config) {
-        var currentToken = Services.getUserToken();
-        var access_token = "id : " + currentToken.hash;
+        var currentToken = UserService.getUserToken();
 
         if (currentToken) {
-            config.headers.authorization = access_token;
+            config.headers.authorization = "id : " + currentToken.hash;
         }
         return config;
     },
 
-    responseError: function (response) {
+    response: function (response) {
         if (response.status === 401) {
             $rootScope.$broadcast('unauthorized');
         }
