@@ -1,8 +1,8 @@
 /**
  * Created by Modou on 29/04/2015.
  */
-angular.module('vc.roadmap', ['ngRoute'])
-    .controller('RoadmapCtrl', function($scope, $rootScope, $stateParams, Services, Bookmarks){
+angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
+    .controller('RoadmapCtrl', function($scope, $rootScope, $stateParams, Services, Bookmarks, geoLocation){
 
         // for $routeParams --> bower install a$scope.pageTitle = 'Itinéraire';ngular-route
         $rootScope.pageTitle = "Itinéraire";
@@ -43,6 +43,22 @@ angular.module('vc.roadmap', ['ngRoute'])
             tmp = $scope.locations.from;
             $scope.locations.from = $scope.locations.dest;
             $scope.locations.dest = tmp;
+        }
+
+        $scope.autocompleteCallback = function(query) {
+            // Get the current position
+            var currentPosition = {
+              lat: geoLocation.getGeolocation().lat,
+              lng: geoLocation.getGeolocation().lng
+            };
+            Services.autocomplete(currentPosition, query).then(function(result){
+                console.log(result);
+                },
+                // error handling
+                function(){
+                    //window.alert('Unavailable service, please re-try later !');
+            });
+
         }
 
 

@@ -1,6 +1,6 @@
 angular.module('vc.loginController', [])
 
-.controller('loginController', function($scope,$rootScope, LoginService,UserService, $ionicPopup, $state, $http) {
+.controller('loginController', function($scope,$rootScope, Services, LoginService,UserService, $ionicPopup, $state, $http) {
 
     $rootScope.pageTitle = "Connexion";
     $scope.data = {};
@@ -14,7 +14,7 @@ angular.module('vc.loginController', [])
     
     $scope.logout = function(){UserService.logout();  $state.reload();}
     
-    $scope.login = function() {
+   /* $scope.login = function() {
         LoginService.loginUser($scope.data.username, $scope.data.password,$scope.data.numAbonne,$scope.data.codePin, $http).success(function(data) {
             
             $state.reload();
@@ -25,7 +25,21 @@ angular.module('vc.loginController', [])
                 template: 'Please check your credentials!'
             });
         });
-    }
+    }*/
+        $scope.login = function() {
+            Services.login(data.mail, data.passw).then(function(user){
+                    UserService.setUser(user);
+                    $state.reload();
+                },
+                // error handling
+                function(){
+                    var alertPopup = $ionicPopup.alert({
+                        title: 'Echec Connexion!',
+                        template: 'Connexion impossible, v!'
+                    });
+                });
+
+        }
     $scope.inscription = function(){
         $state.go("subscription");
     }
