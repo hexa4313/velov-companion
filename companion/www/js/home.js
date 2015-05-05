@@ -43,7 +43,7 @@ angular.module('vc.home', ['ngStorage'])
 					// error handling
 					function(){
 						//window.alert('Unavailable service, please re-try later !');
-					});
+				});
 			});
 
 

@@ -55,6 +55,15 @@ angular.module('vc').factory('Services', function ($http) {
             return $http.put('URL').then(function (response) {
                 return response.data;
             });
+        },
+        autocomplete: function(currentPosition, query) {
+            var url = "http://photon.komoot.de/api/?";
+            url += "q=" + query
+                   "lon=" + currentPosition.lng +
+                   "&lat=" + currentPosition.lat;
+            return $http.put(url).then(function (response) {
+                return response;
+            });
         }
     };
 });
