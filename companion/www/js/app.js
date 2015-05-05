@@ -33,7 +33,7 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.insc
   .state('profil', {
     url: '/profil',
     templateUrl: 'templates/profil.html',
-    controller: 'loginController',
+    controller: 'loginController'
   })
     .state('subscription', {
     url: '/subscription',
@@ -86,7 +86,7 @@ angular.module('vc', ['ionic', 'vc.loginController', 'vc.loginService', 'vc.insc
   $urlRouterProvider.otherwise('/');
 
   //set $httpProvider interceptor for token
-  //$httpProvider.interceptors.push(APIInterceptor);
+  $httpProvider.interceptors.push('APIInterceptor');
 
 });
 
