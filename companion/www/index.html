@@ -52,6 +52,21 @@
     <script src="js/geoLocation.js"></script>
     <script src="js/stations.js"></script>
     <script src="js/userService.js"></script>
+    
+    <script>
+        function change_class(id) { 
+        var a = document.getElementById("1"); 
+        var b = document.getElementById("2"); 
+        var c = document.getElementById("3"); 
+        var d = document.getElementById("4");
+        a.classList.remove("current");
+        b.classList.remove("current");
+        c.classList.remove("current");
+        d.classList.remove("current");
+        var x = document.getElementById(id); 
+        x.classList.add("current");
+        }
+    </script>
 
   </head>
   <body ng-app="vc">
@@ -66,19 +81,19 @@
 
       </ion-content>
       <div class="tabs tabs-icon-top">
-          <a class="tab-item" href="#/">
+          <a class="tab-item" id="1" href="#/" onclick="change_class('1')">
             <i class="icon ion-home" icon-off="ion-home" icon-on="ion-home-strong"></i>
             Home
           </a>
-          <a class="tab-item" href="#/bookmarks">
+          <a class="tab-item" id="2" href="#/bookmarks" onclick="change_class('2')">
             <i class="icon ion-star"></i>
             Favoris
           </a>
-          <a class="tab-item" href="#/performance">
+          <a class="tab-item" id="3" href="#/performance" onclick="change_class('3')">
             <i class="icon ion-heart"></i>
             Performances
           </a>
-          <a class="tab-item" href="#/profil">
+          <a class="tab-item" id="4" href="#/profil" onclick="change_class('4')">
             <i class="icon ion-gear-a"></i>
             Profil
           </a>
