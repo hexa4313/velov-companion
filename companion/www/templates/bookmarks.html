@@ -13,8 +13,13 @@
 
     <div class="list list-inset item item-text-wrap">
         <ion-list>
+<<<<<<< HEAD
           <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="bookmark in bookmarks" type="item-text-wrap" href="#/details/{{bookmark.id}}">
 
+=======
+          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="bookmark in bookmarks" type="item-text-wrap" ng-click="selectBookmark(bookmark.id)" href="#/details/{{bookmark.id}}">
+            
+>>>>>>> 8a66195afb7f1850653ddc85052d05d64c44e834
             <div class="container2">
               <div id="left"><h2>{{bookmark.name}}</h2></div>
               <div id="right">
@@ -36,7 +41,7 @@
 
 
 
-<div class="bookmarkDetail" ng-show="!showList">
+<!--<div class="bookmarkDetail" ng-show="!showList">
     <div class="buttonHeader">
       <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="back()">Back</a>
       <a class="star" ng-click="starClick()"><img ng-src="{{path}}" alt="Star" height="40" width="auto"></a>
@@ -73,4 +78,4 @@
       </div>
     </div>
 
-</div>
+</div>-->

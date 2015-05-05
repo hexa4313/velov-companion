@@ -41,27 +41,8 @@ angular.module('vc.bookmarks', [])
         },
         // error handling
         function(){
-          console.log("Suppression d'un favoris impossible !")
+          console.log("Ajout d'un favoris impossible !")
         });
-  }
-  $scope.getColor = function(elem) {
-    if (elem < 3) {
-      return "color: red";
-    } else if (3 <= elem && elem <= 5) {
-      return "color: orange";
-    } else if (5 < elem){
-      return "color: green";
-    }
-  }
-
-  $scope.selectBookmark = function(bookmarkId) {
-    //$scope.selectedBm = Bookmarks.get(bookmarkId);
-    $scope.showList = false;
-    $scope.path = "/img/bookmark_gold.png";
-  }
-
-  $scope.back = function() {
-    $scope.showList = true;
   }
 
   $scope.starClick = function() {

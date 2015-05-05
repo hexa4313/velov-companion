@@ -25,7 +25,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
             });
         },
         getPerformance: function (userID) {
-            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/station?';
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/'+VCConstants.PATH+ '/performance';
             return $http.get('url??').then(function (response) {
                 return response.data;
             });
