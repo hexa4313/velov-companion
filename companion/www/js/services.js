@@ -135,8 +135,8 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
 
 angular.module('vc').factory('VCConstants', function () {
     return {
-        DOMAIN_URL: 'http://localhost',
-        PORT: ':8100',
+        DOMAIN_URL: 'http://91.229.95.103',
+        PORT: '',
         PATH: 'api'
     };
 });

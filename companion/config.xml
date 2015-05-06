@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.myapp678217" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>vCompanion</name>
+  <name>myVelo\'V</name>
   <description>
-        Velov Companion
+        Velo'V companion
     </description>
   <author email="hi@ionicframework" href="http://ionicframework.com/">
       INSA de Lyon - Département Informatique - Groupe H4313
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <allow-navigation href="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>

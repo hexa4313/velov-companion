@@ -1,5 +1,5 @@
 {
-  "name": "vCompanion",
+  "name": "myVelo'V",
   "app_id": "e9f70612",
   "proxies": [
     {
@@ -9,6 +9,13 @@
     {
       "path": "/brouter",
       "proxyUrl": "http://127.0.0.1:8080/brouter"
+    }
+  ],
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
     }
   ]
 }

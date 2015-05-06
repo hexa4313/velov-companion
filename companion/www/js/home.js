@@ -14,6 +14,7 @@ angular.module('vc.home', ['ngStorage'])
              var deferred = $q.defer();
 
             var onSuccess = function(position)  {
+                console.log(position);
                 geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
                 deferred.resolve(position);
             };
@@ -24,7 +25,7 @@ angular.module('vc.home', ['ngStorage'])
                 deferred.reject('Cannot find your position');
             };
              ionic.Platform.ready(function() {
-                navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
+                navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 10000 });
              });
             return deferred.promise;
         }

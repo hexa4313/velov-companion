@@ -113,6 +113,11 @@ angular.module('vc.navigation', ['ngRoute'])
                 },
                 followMe: function() {
                     map.setZoomAround(geoLocation.getGeolocation(), 23);
+                    console.log(geoLocation.getGeolocation());
+                },
+                followMeTo: function(lat, lon) {
+                    map.setZoomAround([lat, lon], 23);
+                    //console.log(geoLocation.getGeolocation());
                 }
             }
         })("nav-map");
@@ -127,13 +132,16 @@ angular.module('vc.navigation', ['ngRoute'])
         }
 
         $scope.startFollow = function() {
-            $scope.follow();
-        }
-
-        $scope.follow = function() {
-            setTimeout(function(){
-                $scope.map.followMe();
-            },1000);
+            var onSuccess = function(position)  {
+                $scope.map.followMeTo(position.coords.latitude, position.coords.longitude);
+            };
+            function onError(err) {
+                console.log('get geolocation position error');
+                console.log(err);
+            };
+             ionic.Platform.ready(function() {
+                navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 500 });
+            });
         }
 
         $scope.init();
