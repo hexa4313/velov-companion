@@ -1,10 +1,15 @@
+.logo {
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+}
+
 /*---------------------- HOME PAGE ------------------------------------*/
 
-.home-map {
+.home-map, .nav-map {
 	height: 90vh;
 	width : 100vw;
 }
-.station-red-marker, .station-grey-marker{
+.station-red-marker, .station-grey-marker, .station-orange-marker{
 	width:35px;
 	height: 35px;
 	font-size: 28px;
@@ -22,6 +27,10 @@
 
 .station-grey-marker {
 	background: #999;
+}
+
+.station-orange-marker {
+    background: #FF8728;
 }
 
 .av-bikes-div, .av-stands-div {

@@ -4,7 +4,11 @@
   "proxies": [
     {
       "path": "/api",
-      "proxyUrl": "http://localhost/api"
+      "proxyUrl": "http://127.0.0.1:8080/api"
+    },
+    {
+      "path": "/brouter",
+      "proxyUrl": "http://127.0.0.1:8080/brouter"
     }
   ]
 }

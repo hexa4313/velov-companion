@@ -11,7 +11,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 radius = 1000;
             }
             // $http returns a promise, which has a then function, which also returns a promise
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/station?';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT +'/'+VCConstants.PATH+ '/station?';
             url += "lng=" + currentPosition.lng +
                    "&lat=" + currentPosition.lat +
                    "&radius=" + radius;
@@ -29,7 +29,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
         register: function (data) {
 
             // $http returns a promise, which has a then function, which also returns a promise
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/user';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT +'/'+VCConstants.PATH+ '/user';
             var signData = {
                 first_name: data.first_name,
                 last_name: data.last_name,
@@ -42,7 +42,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
             });
         },
         login: function (mail, passw) {
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/user?';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT +'/'+VCConstants.PATH+ '/user?';
             url += "email=" + mail +
             "&password=" + passw;
             return $http.get(url).then(function (response) {
@@ -50,7 +50,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
             });
         },
         getToken: function (mail, passw) {
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/token?';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT +'/'+VCConstants.PATH+ '/token?';
             url += "email=" + mail +
             "&password=" + passw;
             return $http.get(url).then(function (response) {
@@ -58,40 +58,40 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
             });
         },
         getPerformance: function () { // TODO add Token
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/performance';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT +'/'+VCConstants.PATH+ '/performance';
             authData = "id : " + token;
             return $http.get(url).then(function (response) {
                 return response.data;
             });
         },
         createPerformance: function (perf) {
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/performance';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT +'/'+VCConstants.PATH+ '/performance';
             return $http.post(url, perf).then(function (response) {
                 return response.data;
             });
         },
         getBookmarks: function () {
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/station/bookmark/';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT +'/'+VCConstants.PATH+ '/station/bookmark/';
             return $http.get(url).then(function (response) {
                 return response.data;
             });
         },
         addBookmark: function (idStation) {
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/station/bookmark/';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT +'/'+VCConstants.PATH+ '/station/bookmark/';
             url += idStation;
             return $http.put(url).then(function (response) {
                 return response.data;
             });
         },
         removeBookmark: function (idStation) {
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/station/bookmark/';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT+'/'+VCConstants.PATH+ '/station/bookmark/';
             url += idStation;
             return $http.delete(url).then(function (response) {
                 return response.data;
             });
         },
         getRoadmap: function (deptLng, deptLat, destLng, destLat, profile) {
-            var url = VCConstants.DOMAIN_URL+ '/brouter?';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT+ '/brouter?';
             url += "lonlats=" + deptLng + ","+ deptLat + "|" + destLng + ","+ destLat +
                 "&nogos&profile=" + profile +
                 "&alternativeidx=0&format=geojson";
@@ -100,7 +100,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
             });
         },
         getStation: function (idStation) { //TODO
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/station?'+ idStation;
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT +'/'+VCConstants.PATH+ '/station?'+ idStation;
             return $http.get(url).then(function (response) {
                 return response.data;
             });
@@ -110,7 +110,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 radius = 1000000;
             }
             // $http returns a promise, which has a then function, which also returns a promise
-            var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/station?';
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT + '/' + VCConstants.PATH + '/station?';
             url += "lng=" + currentPosition.lng +
             "&lat=" + currentPosition.lat +
             "&radius=" + radius;
@@ -124,13 +124,13 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
                 return response.data;
             });
         },
-        autocomplete: function(currentPosition, query) { // TODO
-            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/autocomplete?';
-            url += "q=" + query +
-                   "&lon=" + currentPosition.lng +
+        autocomplete: function(currentPosition, query) {
+            var url = VCConstants.DOMAIN_URL + VCConstants.PORT + '/' + VCConstants.PATH+'/ac?';
+            url += "query=" + query +
+                   "&lng=" + currentPosition.lng +
                    "&lat=" + currentPosition.lat;
             return $http.get(url).then(function (response) {
-                return response;
+                return response.data;
             });
         }
     };
@@ -138,8 +138,8 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
 
 angular.module('vc').factory('VCConstants', function () {
     return {
-        DOMAIN_URL: 'http://91.229.95.103',
-        PORT: '8080',
+        DOMAIN_URL: 'http://localhost',
+        PORT: ':8100',
         PATH: 'api'
     };
 });

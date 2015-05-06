@@ -6,7 +6,7 @@
     </div>
     <div class="col col-75">
         <label class="item item-input ">
-            <ion-autocomplete placeholder="Départ" ng-model="locations.from.name" items-method="autocompleteCallback(query)" /></ion-autocomplete>
+            <ion-autocomplete placeholder="Départ" ng-model="locations.from" item-view-value-key="name" items-method="autocompleteCallback(query)" template-url="templates/autocompleteform.html"/></ion-autocomplete>
         </label>
     </div>
     <!-- <div class="col"></div> -->
@@ -25,7 +25,7 @@
 
     <div class="col col-75">
         <label class="item item-input ">
-            <ion-autocomplete placeholder="Arrivée" ng-model="locations.dest.name" items-method="autocompleteCallback(query)" /></ion-autocomplete>
+            <ion-autocomplete placeholder="Arrivée" ng-model="locations.dest" item-view-value-key="name" items-method="autocompleteCallback(query)" template-url="templates/autocompleteform.html"/></ion-autocomplete>
         </label>
     </div>
    <!-- <div class="col"></div> -->

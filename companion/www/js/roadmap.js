@@ -41,7 +41,7 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
         **/
         $scope.findRoadmap = function() {
 
-            $scope.locations.dest = Stations.getStationByNumber(10080);// TODO DELETE AFter Test
+            //  $scope.locations.dest = Stations.getStationByNumber(10080);// TODO DELETE AFter Test
             if($scope.locations.from.name && $scope.locations.dest.name){
 
                 if($scope.roadmapType === ''){
@@ -59,12 +59,11 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
                 }, function(reason) {
                     console.log(reason);
                 });*/
+                console.log($scope.locations.dest);
                 Services.getRoadmap($scope.locations.from.position.longitude, $scope.locations.from.position.latitude,
                     $scope.locations.dest.position.longitude, $scope.locations.dest.position.latitude,
                     $scope.roadmapType).then(function(result){
                         $rootScope.roadmap = result;
-                        console.log('itineraire result');
-                        console.log(result);
                         $state.go("navigation");
                     },
                     // error handling
@@ -86,19 +85,15 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
         }
 
         $scope.autocompleteCallback = function(query) {
+            if (query.length < 3) {
+                return [];
+            }
             // Get the current position
             var currentPosition = {
               lat: geoLocation.getGeolocation().lat,
               lng: geoLocation.getGeolocation().lng
             };
-            Services.autocomplete(currentPosition, query).then(function(result){
-                console.log(result);
-                },
-                // error handling
-                function(){
-                    //window.alert('Unavailable service, please re-try later !');
-            });
-
+            return Services.autocomplete(currentPosition, query);
         }
 
 
