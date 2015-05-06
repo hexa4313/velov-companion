@@ -9,6 +9,22 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
         $scope.locations = {from : {}, dest : {}};
         $scope.roadmapType = '';
 
+        $scope.selectMe = function() {
+            var currentPosition = {
+              lat: geoLocation.getGeolocation().lat,
+              lng: geoLocation.getGeolocation().lng
+            };
+            $scope.mypos = {
+                "name": "Ma position",
+                "address": "",
+                "position": {
+                    "latitude": currentPosition.lat,
+                    "longitude": currentPosition.lng
+                }
+            }
+            console.log('selected');
+        }
+
         $scope.init = function(){
 
             if($stateParams.stationId)
@@ -20,13 +36,14 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
             else{
                 // simple case (nothing is selected)
             }
+
+
         }
 
         /*
         **/
         $scope.findRoadmap = function() {
             if($scope.locations.from.name && $scope.locations.dest.name){
-
                 if($scope.roadmapType === ''){
                     $scope.roadmapType = "safety";
                 }

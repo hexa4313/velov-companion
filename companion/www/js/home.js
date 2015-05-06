@@ -110,7 +110,9 @@ angular.module('vc.home', ['ngStorage'])
         return {
             addStations: function(stations) {
                 var markerArray = [];
-                for(stt of stations){
+                console.log(stations);
+                for(var i=0;i<stations.length;i++){
+                    var stt = stations[i];
                     var content = '<strong><a href="#/details/' + stt.number + '">' + stt.name +
                                   '</strong><br><div class="av-bikes-div"><i class="icon ion-android-bicycle"></i> ' +
                                   stt.available_bikes +

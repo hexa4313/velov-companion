@@ -2,16 +2,15 @@
  * Created by Modou on 06/05/2015.
  */
 angular.module('vc.navigation', ['ngRoute'])
-    .controller('NavigationCtrl', function($scope, $rootScope, $state){
+    .controller('NavigationCtrl', function($scope, $rootScope, $state, geoLocation){
 
-        console.log($scope.roadmap);
         $scope.init = function() {
             if(!$rootScope.roadmap) {
                 $state.go("roadmap");
             }
-
-            $scope.roadmap = $rootScope.roadmap; // r
-            console.log("Salut Navig");
+            $scope.startup = true;
+            $scope.roadmap = $rootScope.roadmap;
+            $scope.map.addRoute($scope.roadmap.features[0].geometry);
         }
         $scope.map = (function(elemId) {
             defaultCenter = {
@@ -25,7 +24,14 @@ angular.module('vc.navigation', ['ngRoute'])
 
             var destIcon = L.divIcon({
                 className: 'dest-marker',
-                html: '<i class="icon ion-android-bicycle"></i>',
+                html: '<i class="icon ion-flag"></i>',
+                iconSize: [35, 35],
+                iconAnchor: [5, 35]
+            });
+
+            var startIcon = L.divIcon({
+                className: 'start-marker',
+                html: 'D',
                 iconSize: [35, 35],
                 iconAnchor: [35, 35]
             });
@@ -54,12 +60,81 @@ angular.module('vc.navigation', ['ngRoute'])
             var position = L.latLng(defaultCenter.lat, defaultCenter.lon);
             map.setView(position, defaultCenter.zoom);
 
+            /*var getPxBounds = map.getPixelBounds;
+            map.getPixelBounds = function () {
+                var bounds = getPxBounds.call(this);
+                // ... extend the bounds
+                bounds.min.x=bounds.min.x-1000;
+                bounds.min.y=bounds.min.y-1000;
+                bounds.max.x=bounds.max.x+1000;
+                bounds.max.y=bounds.max.y+1000;
+                return bounds;
+            };*/
+
+            var startPos;
+            var destPos;
+
             return {
                 addRoute: function(geoJSON) {
-                    L.geoJson(geoJSON, {
+
+                    var route = L.geoJson(geoJSON, {
                         style: myStyle
                     }).addTo(map);
+
+                    // Get the start position
+                    startPos = L.latLng(geoJSON.coordinates[0][1], geoJSON.coordinates[0][0]);
+
+                    // Adds the start marker
+                    var startMarker = L.marker(startPos, {
+                        icon: startIcon
+                    }).addTo(map);
+
+                    // Get the dest position
+                    destPos = L.latLng(geoJSON.coordinates[geoJSON.coordinates.length-1][1],
+                                           geoJSON.coordinates[geoJSON.coordinates.length-1][0]);
+
+                    // Adds the dest marker
+                    var destMarker = L.marker(destPos, {
+                        icon: destIcon
+                    }).addTo(map);
+
+                    // Get my position
+                    myPos = L.latLng(geoLocation.getGeolocation());
+
+                    // Adds my marker
+                    var myMarker = L.marker(myPos, {
+                        icon: meIcon
+                    }).addTo(map);
+
+                    map.fitBounds(route.getBounds().pad(0.01));
+                },
+                followStart: function() {
+                    map.setZoomAround(startPos, 23);
+                },
+                followMe: function() {
+                    map.setZoomAround(geoLocation.getGeolocation(), 23);
                 }
             }
         })("nav-map");
+
+        $scope.startNav = function() {
+            console.log('start');
+            $scope.map.followStart();
+            $scope.startup = false;
+            setTimeout(function(){
+                $scope.startFollow();
+            },2000);
+        }
+
+        $scope.startFollow = function() {
+            $scope.follow();
+        }
+
+        $scope.follow = function() {
+            setTimeout(function(){
+                $scope.map.followMe();
+            },1000);
+        }
+
+        $scope.init();
     });

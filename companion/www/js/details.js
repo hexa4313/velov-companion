@@ -133,7 +133,7 @@ angular.module('vc.details', ['ngStorage'])
     });
 
     // Get the station position
-    var stationPos = L.latLng(stt.position.latitude, stt.position.longitude);
+    var stationPos = L.latLng($scope.station.position.latitude, $scope.station.position.longitude);
 
     // Adds the target station marker
     var marker = L.marker(stationPos, {

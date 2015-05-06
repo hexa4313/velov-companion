@@ -11,8 +11,9 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                 if(!$localStorage['stations']) {
                     return null;
                 }
-                console.log($localStorage['stations']);
-                for(stt of $localStorage['stations']) {
+                for(var i=0;i<$localStorage['stations'].length;i++){
+                    var stt = $localStorage['stations'][i];
+                //for(stt of $localStorage['stations']) {
                     if(stt.number == id) {
                         return stt;
                     }
@@ -30,7 +31,8 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                     return false;
                 }
                 var result = false;
-                for(var bm of $localStorage['bookmarks']) {
+                for(var i=0;i<$localStorage['bookmarks'].length;i++){
+                    var bm = $localStorage['bookmarks'][i];
                     if( bm != null && bm.number == idBookmark) {
                         result= true;
                         break;

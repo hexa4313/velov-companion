@@ -8,8 +8,10 @@
 .home-map, .nav-map {
 	height: 90vh;
 	width : 100vw;
+    overflow: visible;
 }
-.station-red-marker, .station-grey-marker, .station-orange-marker{
+
+.station-red-marker, .station-grey-marker, .station-orange-marker, .dest-marker, .start-marker {
 	width:35px;
 	height: 35px;
 	font-size: 28px;
@@ -19,6 +21,15 @@
 	color:#fff;
 	line-height: 34px;
 	display: inline-block;
+}
+
+.dest-marker {
+    font-size: 38px;
+    background:none;
+    color:#333;
+}
+
+.start-marker {
 }
 
 .station-red-marker {
@@ -336,4 +347,10 @@ ion-content.scroll-content.ionic-scroll.has-header{
 }
 .test{
     position:relative;
+}
+
+/*---------------------- navigation PAGE ------------------------------------*/
+.start-nav {
+    position: absolute;
+    z-index: 9999;
 }
