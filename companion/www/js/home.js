@@ -10,7 +10,8 @@ angular.module('vc.home', ['ngStorage'])
          */
         $rootScope.pageTitle = "Velo'V Companion";
          function findMe(){
-            var deferred = $q.defer();
+
+             var deferred = $q.defer();
 
             var onSuccess = function(position)  {
                 geoLocation.setGeolocation(position.coords.latitude, position.coords.longitude);
@@ -22,9 +23,12 @@ angular.module('vc.home', ['ngStorage'])
                 geoLocation.setGeolocation(4.85, 45.76);// Lyon centre
                 deferred.reject('Cannot find your position');
             };
-             navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
+             ionic.Platform.ready(function() {
+                navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
+             });
             return deferred.promise;
         }
+
         $scope.start = function(){
 
             var promise  = findMe();
@@ -226,5 +230,5 @@ angular.module('vc.home', ['ngStorage'])
         }
     })("main-map");
 
-		$scope.start();
+        $scope.start();
 });

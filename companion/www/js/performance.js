@@ -3,7 +3,7 @@
  */
 angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
 
-    .controller('PerformanceCtrl', function($scope,$rootScope, Services, UserService){
+    .controller('PerformanceCtrl', function($scope,$rootScope, $q, Services, UserService){
 
         $rootScope.pageTitle = "Performances";
 
@@ -22,6 +22,7 @@ angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
 
         function getToken(){
 
+            var deferred = $q.defer();
             Services.getToken($scope.user.email, $scope.user.password).then(function(result){
                     console.log(result);
                     UserService.setUserToken(result);
@@ -29,15 +30,8 @@ angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
                 },
                 // error handling
                 function(){
-                    console.log("Erreur sur l'obtention des favoris !")
+                    deferred.reject('Cannot get a token for the user');
                 });
-            var deferred = $q.defer();
-
-            function onError(err) {
-                console.log('get token error');
-                console.log(err);
-                deferred.reject('Cannot get a token for the user');
-            };
             return deferred.promise;
         }
 
@@ -49,22 +43,20 @@ angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
                 //$scope.perfs = UserService.getPerformances();
             }
             else {
-                var token;
-                if (UserService.hasUserToken()) {
-                    token = UserService.getUserToken();
-                }
-                else {
-                    var promise = getToken()
-                        .then(function (token) {
-                            console.log(token);
-                            token = token;
-                        }, function (error) {
-                            console.error(error)
-                        })
+                if(!UserService.hasUserToken())
+                {
+                    getToken().then(function(token) {
+                        console.log(token);
+                        UserService.setUserToken(token);
+                    }, function(error) {
+                        console.error(error)
+                    });
                 }
 
+               // var token = UserService.getUserToken();
+
                 // set Authorization token
-                Services.setAuthToken(token.hash);
+                //Services.getUserToken(token.hash);
                 Services.getPerformance().then(function (result) {
                         console.log(result);
                        // $scope.perfs = result; TODO

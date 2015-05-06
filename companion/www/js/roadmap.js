@@ -22,43 +22,16 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
             }
         }
 
-       /* function getRoadmap(deptLng, deptLat, destLng, destLat, profile) {
-            var deferred = $q.defer();
-
-            setTimeout(function() {
-                Services.getRoadmap(deptLng, deptLat, destLng, destLat, profile).then(function(result){
-                        deferred.resolve(result);
-                    },
-                    // error handling
-                    function(){
-                        deferred.reject("Erreur sur l'obtention de l'itinéraire !");
-                    });
-            }, 10000);
-
-            return deferred.promise;
-        }*/
         /*
         **/
         $scope.findRoadmap = function() {
 
-            $scope.locations.dest = Stations.getStationByNumber(10080);// TODO DELETE AFter Test
+           // $scope.locations.dest = Stations.getStationByNumber(10080);
             if($scope.locations.from.name && $scope.locations.dest.name){
 
                 if($scope.roadmapType === ''){
                     $scope.roadmapType = "safety";
                 }
-
-                /*var promise = getRoadmap($scope.locations.from.position.longitude, $scope.locations.from.position.latitude,
-                    $scope.locations.dest.position.longitude, $scope.locations.dest.position.latitude,
-                    $scope.roadmapType);
-                promise.then(function(roadmap) {
-                    $rootScope.roadmap = roadmap;
-                    console.log('itineraire result');
-                    console.log(roadmap);
-                    $state.go("navigation");
-                }, function(reason) {
-                    console.log(reason);
-                });*/
                 Services.getRoadmap($scope.locations.from.position.longitude, $scope.locations.from.position.latitude,
                     $scope.locations.dest.position.longitude, $scope.locations.dest.position.latitude,
                     $scope.roadmapType).then(function(result){

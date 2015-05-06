@@ -1,15 +1,15 @@
-<div ng-if="isLogged() == true">
+<div ng-if="isLogged()">
      <div class="list">
          <div class="item item-divider">
             Informations personnelles
           </div>
             <a class="item item-avatar">
               <h2>Email</h2>
-              <p>{{ user.username }}</p>
+              <p>{{ user.email }}</p>
             </a>
             <a class="item item-avatar">
               <h2>Catégorie</h2>
-              <p> {{ user.catSport }}</p>
+              <p> Intermédiare</p>
             </a>
           <div class="item item-divider">
             Informations abonnement
@@ -21,7 +21,7 @@
             <button class="button button-block button-assertive" ng-click="logout()">Se déconnecter</button>
     </div>
 </div>
-<div ng-if="isLogged() == false">
+<div ng-if="!isLogged()">
     
 <div class="list list-inset" >
     <div class="item item-divider">
