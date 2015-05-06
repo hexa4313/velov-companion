@@ -8,9 +8,7 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
         $rootScope.pageTitle = "Itinéraire";
         $scope.locations = {from : {}, dest : {}};
         $scope.roadmapType = '';
-        // test
-        //$scope.locations.from  = {name:'Villeurbanne',lng: 4.871454, lat: 45.784011};
-        //$scope.locations.dest  = {name:'Bellecour', lat:4.938827, lng:45.709621};
+
         $scope.init = function(){
 
             if($stateParams.stationId)

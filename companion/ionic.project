@@ -1,4 +1,10 @@
 {
   "name": "vCompanion",
-  "app_id": "e9f70612"
+  "app_id": "e9f70612",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://localhost/api"
+    }
+  ]
 }
