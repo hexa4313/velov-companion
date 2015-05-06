@@ -2,7 +2,7 @@
  * Created by Modou on 29/04/2015.
  */
 angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
-    .controller('RoadmapCtrl', function($scope, $rootScope, $stateParams, Services, Bookmarks, geoLocation){
+    .controller('RoadmapCtrl', function($scope, $rootScope, $state, $q, $stateParams, Services, Stations, geoLocation){
 
         // for $routeParams --> bower install a$scope.pageTitle = 'Itinéraire';ngular-route
         $rootScope.pageTitle = "Itinéraire";
@@ -17,20 +17,62 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
             {
                 // Case the user has already selected a from station
                 var idStation = parseInt($stateParams.stationId);
-                $scope.locations.from  = Bookmarks.get(idStation);
+                $scope.locations.from  = Stations.getStationByNumber(idStation);
             }
             else{
                 // simple case (nothing is selected)
             }
         }
 
+       /* function getRoadmap(deptLng, deptLat, destLng, destLat, profile) {
+            var deferred = $q.defer();
+
+            setTimeout(function() {
+                Services.getRoadmap(deptLng, deptLat, destLng, destLat, profile).then(function(result){
+                        deferred.resolve(result);
+                    },
+                    // error handling
+                    function(){
+                        deferred.reject("Erreur sur l'obtention de l'itinéraire !");
+                    });
+            }, 10000);
+
+            return deferred.promise;
+        }*/
+        /*
+        **/
         $scope.findRoadmap = function() {
 
-
-            console.log($scope.roadmapType);
+            $scope.locations.dest = Stations.getStationByNumber(10080);
             if($scope.locations.from.name && $scope.locations.dest.name){
 
-                // TODO request Services.getRoadmap + how to display it?
+                if($scope.roadmapType === ''){
+                    $scope.roadmapType = "safety";
+                }
+
+                /*var promise = getRoadmap($scope.locations.from.position.longitude, $scope.locations.from.position.latitude,
+                    $scope.locations.dest.position.longitude, $scope.locations.dest.position.latitude,
+                    $scope.roadmapType);
+                promise.then(function(roadmap) {
+                    $rootScope.roadmap = roadmap;
+                    console.log('itineraire result');
+                    console.log(roadmap);
+                    $state.go("navigation");
+                }, function(reason) {
+                    console.log(reason);
+                });*/
+                Services.getRoadmap($scope.locations.from.position.longitude, $scope.locations.from.position.latitude,
+                    $scope.locations.dest.position.longitude, $scope.locations.dest.position.latitude,
+                    $scope.roadmapType).then(function(result){
+                        $rootScope.roadmap = result;
+                        console.log('itineraire result');
+                        console.log(result);
+                        $state.go("navigation");
+                    },
+                    // error handling
+                    function(){
+                        console.log("Erreur sur l'obtention de l'itinéraire !");
+                    });
             }
             else{
                 alert("Vous devez choisir une adresse ou station de départ et une destination");
