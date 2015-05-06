@@ -11,13 +11,14 @@ angular.module('vc.details', ['ngStorage'])
 
         Services.removeBookmark(idStation).then(function(result){
               console.log(result);
-              Stations.remove(idStation);
+              Stations.removeBookmark(idStation);
             },
             // error handling
             function(){
               console.log("Suppression d'un favoris impossible !")
             });
       }
+        $scope.isBookmark
 
       $scope.addBookmark =  function(station) {
         Services.addBookmark(station.id).then(function(result){

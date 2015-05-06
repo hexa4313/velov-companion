@@ -31,7 +31,7 @@ angular.module('vc.home', ['ngStorage'])
             promise.then(function(position) {
 
                 var currentPosition = {
-                    lat: position.coords.latitude, //geoLocation.getGeolocation().lat,
+                    lat: position.coords.latitude,
                     lng: position.coords.longitude
                 };
                 $scope.map.setPosition(currentPosition);
