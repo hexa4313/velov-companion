@@ -1,6 +1,6 @@
 angular.module('vc.inscriptionController', [])
 
-.controller('inscriptionController', function($scope,$rootScope, Services, LoginService,inscriptionService,UserService, $ionicPopup, $state, $http) {
+.controller('inscriptionController', function($scope,$rootScope, Services,UserService, $ionicPopup, $state) {
     
     $rootScope.pageTitle = "Inscription";
     $scope.data = {};
@@ -9,10 +9,10 @@ angular.module('vc.inscriptionController', [])
 
         $scope.register = function() {
 
-            Services.sign($scope.data).then(function(user){
+            Services.register($scope.data).then(function(user){
                    $scope.user = user;
                     UserService.setUser(user);
-                    $state.go("profil");
+                    $state.go("home");
                 },
                 // error handling
                 function(){

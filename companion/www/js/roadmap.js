@@ -43,7 +43,7 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
         **/
         $scope.findRoadmap = function() {
 
-            $scope.locations.dest = Stations.getStationByNumber(10080);
+            $scope.locations.dest = Stations.getStationByNumber(10080);// TODO DELETE AFter Test
             if($scope.locations.from.name && $scope.locations.dest.name){
 
                 if($scope.roadmapType === ''){

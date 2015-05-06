@@ -26,7 +26,7 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
         clearAuthToken : function() {
             $http.defaults.headers.common['Authorization'] = 'Basic';
         },
-        sign: function (data) {
+        register: function (data) {
 
             // $http returns a promise, which has a then function, which also returns a promise
             var url = VCConstants.DOMAIN_URL+'/'+VCConstants.PATH+ '/user';
