@@ -121,11 +121,11 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
             });
         },
         autocomplete: function(currentPosition, query) { // TODO
-            var url = "http://photon.komoot.de/api/?";
-            url += "q=" + query
-                   "lon=" + currentPosition.lng +
+            var url = VCConstants.DOMAIN_URL+':'+VCConstants.PORT+'/autocomplete?';
+            url += "q=" + query +
+                   "&lon=" + currentPosition.lng +
                    "&lat=" + currentPosition.lat;
-            return $http.put(url).then(function (response) {
+            return $http.get(url).then(function (response) {
                 return response;
             });
         }

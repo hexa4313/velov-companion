@@ -57,7 +57,6 @@ angular.module('vc.details', ['ngStorage'])
 
   if($stateParams.stationId)
   {
-      // Case the user has already selected a from station
       var idStation = parseInt($stateParams.stationId);
       $scope.station = Stations.getStationByNumber(idStation);
       console.log($scope.station);

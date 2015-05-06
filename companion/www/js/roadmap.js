@@ -2,25 +2,20 @@
  * Created by Modou on 29/04/2015.
  */
 angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
-    .controller('RoadmapCtrl', function($scope, $rootScope, $stateParams, Services, Bookmarks, geoLocation){
+    .controller('RoadmapCtrl', function($scope, $rootScope, $stateParams, Services, Stations, geoLocation){
 
         // for $routeParams --> bower install a$scope.pageTitle = 'Itinéraire';ngular-route
         $rootScope.pageTitle = "Itinéraire";
         $scope.locations = {from : {}, dest : {}};
         $scope.roadmapType = '';
-        // test
-        //$scope.locations.from  = {name:'Villeurbanne',lng: 4.871454, lat: 45.784011};
-        //$scope.locations.dest  = {name:'Bellecour', lat:4.938827, lng:45.709621};
+
         $scope.init = function(){
 
             if($stateParams.stationId)
             {
                 // Case the user has already selected a from station
                 var idStation = parseInt($stateParams.stationId);
-                $scope.locations.from  = Bookmarks.get(idStation);
-            }
-            else{
-                // simple case (nothing is selected)
+                $scope.locations.from = Stations.getStationByNumber(idStation);
             }
         }
 
