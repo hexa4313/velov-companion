@@ -6,9 +6,10 @@ angular.module('vc.details', ['ngStorage'])
 
       $scope.removeBookmark =  function(idStation) {
 
+          Stations.removeBookmark(idStation);
         Services.removeBookmark(idStation).then(function(result){
               console.log(result);
-              Stations.removeBookmark(idStation);
+
             },
             // error handling
             function(){
@@ -19,9 +20,9 @@ angular.module('vc.details', ['ngStorage'])
 
 
       $scope.addBookmark =  function(station) {
+          Stations.addBookmark(station);
         Services.addBookmark(station.id).then(function(result){
               console.log(result);
-              Stations.addBookmark(station);
             },
             // error handling
             function(){

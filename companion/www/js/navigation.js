@@ -2,16 +2,51 @@
  * Created by Modou on 06/05/2015.
  */
 angular.module('vc.navigation', ['ngRoute'])
-    .controller('NavigationCtrl', function($scope, $rootScope, $state){
+    .controller('NavigationCtrl', function($scope, $rootScope, $state, Stations){
 
-        console.log($scope.roadmap);
         $scope.init = function() {
             if(!$rootScope.roadmap) {
                 $state.go("roadmap");
             }
 
             $scope.roadmap = $rootScope.roadmap; // r
+            $scope.addNewPerformance($scope.roadmap.features[0].properties);
             console.log("Salut Navig");
+        }
+
+        $scope.addNewPerformance  = function(properties) {
+            /* 0:  "Longitude"
+             1:  "Latitude"
+             2:  "Elevation"
+             3:  "Distance"
+             4:  "CostPerKm"*/
+            var distance = 0;
+            console.log($scope.roadmap.features[0].properties);
+            var  cost = (properties.cost? parseInt(properties.cost) : 0);
+            if(properties.messages){
+                for(var i = 1; i < properties.messages.length; i++){
+                    var currentDistance = parseInt(properties.messages[i][3]);
+                    distance += currentDistance;
+                    //cost += (currentDistance / 1000) * parseInt(properties.messages[i][4]);
+                }
+                distance = distance / 1000;
+               var perf =  {
+                    datePerf : new Date(),
+                    vitesse : "10km/h",
+                    duree : "13mn",
+                    dateDepart : "08h18",
+                    dateArrivee : "08h31",
+                    stationDepart : $rootScope.locations.from.name,
+                    stationArrivee : $rootScope.locations.dest.name,
+                    distance : distance,
+                    cost : cost
+                };
+                Stations.addPerformance(perf);
+               /* Stations.addPerformance(perf);
+                Stations.addPerformance(perf);
+               Stations.addPerformance(perf);*/
+            }
+
         }
         $scope.map = (function(elemId) {
             defaultCenter = {
@@ -62,4 +97,6 @@ angular.module('vc.navigation', ['ngRoute'])
                 }
             }
         })("nav-map");
+
+        $scope.init();
     });

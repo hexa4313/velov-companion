@@ -17,7 +17,8 @@ angular.module('vc.loginController', [])
 
         $scope.login = function() {
             Services.login($scope.data.email, $scope.data.password).then(function(user){
-                    UserService.setUser(user);
+                    var userData = {email: user.email, password:$scope.data.password, id:user.id};
+                    UserService.setUser(userData);
                     $state.reload();
                 },
                 // error handling

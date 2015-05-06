@@ -63,6 +63,22 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                 $localStorage['bookmarks'] = bookmarks;
 
             },
+            addPerformance: function(perf) {
+                var perfs = [];
+                if($localStorage['performance']) {
+                    perfs = $localStorage['performance'];
+                }
+                perfs.splice(1, 0, perf);
+                $localStorage['performance'] = perfs;
+
+            },
+            getPerformance: function() {
+                if(!$localStorage['performance']) {
+                    $localStorage['performance'] = [] ;
+                }
+                return $localStorage['performance'];
+
+            },
             setAllStations: function (allStations) {
                 $localStorage['allStations'] = allStations;
             },

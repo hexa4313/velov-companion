@@ -3,11 +3,11 @@
  */
 angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
 
-    .controller('PerformanceCtrl', function($scope,$rootScope, $q, Services, UserService){
+    .controller('PerformanceCtrl', function($scope,$rootScope, $q, Services, UserService, Stations, $filter) {
 
         $rootScope.pageTitle = "Performances";
 
-        $rootScope.$on('unauthorized', function() {
+        $rootScope.$on('unauthorized', function () {
             UserService.setUserToken(null);
             getToken()
                 .then(function (token) {
@@ -20,16 +20,16 @@ angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
         });
 
 
-        function getToken(){
+        function getToken() {
 
             var deferred = $q.defer();
-            Services.getToken($scope.user.email, $scope.user.password).then(function(result){
+            Services.getToken($scope.user.email, $scope.user.password).then(function (result) {
                     console.log(result);
                     UserService.setUserToken(result);
                     deferred.resolve(result);
                 },
                 // error handling
-                function(){
+                function () {
                     deferred.reject('Cannot get a token for the user');
                 });
             return deferred.promise;
@@ -38,28 +38,26 @@ angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
 
         $scope.init = function () {
 
-            if(UserService.hasPerformances())
-            {
+            if (UserService.hasPerformances()) {
                 //$scope.perfs = UserService.getPerformances();
             }
             else {
-                if(!UserService.hasUserToken())
-                {
-                    getToken().then(function(token) {
+                if (!UserService.hasUserToken()) {
+                    getToken().then(function (token) {
                         console.log(token);
                         UserService.setUserToken(token);
-                    }, function(error) {
+                    }, function (error) {
                         console.error(error)
                     });
                 }
 
-               // var token = UserService.getUserToken();
+                // var token = UserService.getUserToken();
 
                 // set Authorization token
                 //Services.getUserToken(token.hash);
                 Services.getPerformance().then(function (result) {
                         console.log(result);
-                       // $scope.perfs = result; TODO
+                        // $scope.perfs = result; TODO
                         UserService.setPerformances(result);
                     },
                     // error handling
@@ -69,49 +67,54 @@ angular.module('vc.perf', ['chart.js', 'ui.bootstrap'])
             }
         }
 
-        $scope.perfs = [];
-            $scope.perfs =  [{
-                datePerf : new Date(),
-                vitesse : "10km/h",
-                duree : "12mn",
-                dateDepart : "10h30",
-                dateArrivee : "10h42",
-                stationDepart : "BelleCour",
-                stationArrivee : "Cordier"
-            },
-                {
-                    datePerf : new Date(),
-                    vitesse : "15km/h",
-                    duree : "20mn",
-                    dateDepart : "09h45",
-                    dateArrivee : "10h05",
-                    stationDepart : "La Doua",
-                    stationArrivee : "Part-Dieu"
-                },
-            ];
-            
-
-        Date.prototype.ddmm = function() {
-           //var yyyy = this.getFullYear().toString();
-           var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
-           var dd  = this.getDate().toString();
-           return  (dd[1]?dd:"0"+dd[0]) + "/" + (mm[1]?mm:"0"+mm[0]); // padding
-        };
+        $scope.perfs = Stations.getPerformance();
+        console.log('$scope.perfs');
+        console.log($scope.perfs);
+        /*$scope.perfs =  [{
+         datePerf : new Date(),
+         vitesse : "10km/h",
+         duree : "12mn",
+         dateDepart : "10h30",
+         dateArrivee : "10h42",
+         stationDepart : "BelleCour",
+         stationArrivee : "Cordier"
+         },
+         {
+         datePerf : new Date(),
+         vitesse : "15km/h",
+         duree : "20mn",
+         dateDepart : "09h45",
+         dateArrivee : "10h05",
+         stationDepart : "La Doua",
+         stationArrivee : "Part-Dieu"
+         },
+         ];*/
 
 
-        $scope.dataPerf  = {
-            "series": ["Performances"],
-            "data": [[parseInt($scope.perfs[1].duree), "10", "30", "45", "40", "5", "0", "20", "30", "50"]],
-            "labels": [$scope.perfs[0].datePerf.ddmm(), "02", "03", "04", "05", "06", "07", "08", "09", "10"],
-            "colours": [{ // default
-              "fillColor": "rgba(224, 108, 112, 0.6)",
-              "strokeColor": "rgba(207,100,103,1)",
-              "pointColor": "rgba(220,220,220,1)",
-              "pointStrokeColor": "#fff",
-              "pointHighlightFill": "#fff",
-              "pointHighlightStroke": "rgba(151,187,205,0.8)"
-            }]
-        };
+        if ($scope.perfs.length > 0) {
+
+            var labels = [];
+            var data = [];
+            for (var i= 0; i<$scope.perfs.length ; i++){
+                labels[i] = $filter('date')($scope.perfs[i].datePerf, 'MM/dd');
+                data[i] = $scope.perfs[i].cost;
+            }
+
+
+            $scope.dataPerf = {
+                "series": ["Performances"],
+                "data": [data],
+                "labels": labels,
+                "colours": [{ // default
+                    "fillColor": "rgba(224, 108, 112, 0.6)",
+                    "strokeColor": "rgba(207,100,103,1)",
+                    "pointColor": "rgba(220,220,220,1)",
+                    "pointStrokeColor": "#fff",
+                    "pointHighlightFill": "#fff",
+                    "pointHighlightStroke": "rgba(151,187,205,0.8)"
+                }]
+            };
+        }
 
         /*
          * if given group is the selected group, deselect it

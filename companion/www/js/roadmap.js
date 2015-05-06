@@ -34,6 +34,7 @@ angular.module('vc.roadmap', ['ngRoute','ion-autocomplete'])
                     $scope.locations.dest.position.longitude, $scope.locations.dest.position.latitude,
                     $scope.roadmapType).then(function(result){
                         $rootScope.roadmap = result;
+                        $rootScope.locations = $scope.locations;
                         $state.go("navigation");
                     },
                     // error handling

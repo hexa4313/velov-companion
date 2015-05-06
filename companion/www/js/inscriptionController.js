@@ -11,8 +11,9 @@ angular.module('vc.inscriptionController', [])
         $scope.register = function() {
 
             Services.register($scope.data.email, $scope.data.password).then(function(user){
-                   $scope.user = user;
-                    UserService.setUser(user);
+                   var userData = {email: user.email, password:$scope.data.password, id:user.id};
+                   $scope.user = userData;
+                    UserService.setUser(userData);
                     $state.go("home");
                 },
                 // error handling
