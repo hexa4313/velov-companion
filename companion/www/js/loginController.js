@@ -13,19 +13,7 @@ angular.module('vc.loginController', [])
     $scope.isLogged = function() { return UserService.isLogged(); }
     
     $scope.logout = function(){UserService.logout();  $state.reload();}
-    
-   /* $scope.login = function() {
-        LoginService.loginUser($scope.data.username, $scope.data.password,$scope.data.numAbonne,$scope.data.codePin, $http).success(function(data) {
-            
-            $state.reload();
-            
-        }).error(function(data) {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Login failed!',
-                template: 'Please check your credentials!'
-            });
-        });
-    }*/
+
 
         $scope.login = function() {
             Services.login($scope.data.email, $scope.data.password).then(function(user){

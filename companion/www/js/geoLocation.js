@@ -17,6 +17,13 @@ angular.module('vc').factory('geoLocation', function ($localStorage) {
                 lat: $localStorage['geoLocation'].latitude,
                 lng: $localStorage['geoLocation'].longitude
             }
+        },
+        setRoadmap: function (roadmap) {
+
+            $localStorage['roadmap'] = roadmap;
+        },
+        setRoadmap: function () {
+            return $localStorage['roadmap'];
         }
     };
 
