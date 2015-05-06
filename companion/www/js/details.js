@@ -3,9 +3,6 @@ angular.module('vc.details', ['ngStorage'])
 .controller('DetailsCtrl', function($scope, $rootScope, Services, geoLocation, $q, $stateParams, Stations){
 
   $rootScope.pageTitle = "Détails Station";
-  var star = true;
-  $scope.path = "/img/bookmark_gold.png";
-
 
       $scope.removeBookmark =  function(idStation) {
 
@@ -19,6 +16,7 @@ angular.module('vc.details', ['ngStorage'])
             });
       }
 
+
       $scope.addBookmark =  function(station) {
         Services.addBookmark(station.id).then(function(result){
               console.log(result);
@@ -29,19 +27,16 @@ angular.module('vc.details', ['ngStorage'])
               console.log("Ajout d'un favoris impossible !")
             });
       }
-  $scope.starClick = function() {
-    console.log($scope.path);
-    console.log(star);
+  $scope.starClick = function(idSation) {
     //get element and find out if bookmark or not
-    if (star) {
+    if (Stations.isBookmark(idStation)) {
       $scope.path = "/img/bookmark_black.png";
-      star = false;
-      // remove from bookmark
+      $scope.removeBookmark(idStation);
     }
     else {
+      $scope.station = Stations.getStationByNumber(idStation);
       $scope.path = "/img/bookmark_gold.png";
-      star = true;
-      // add from bookmark
+      $scope.addBookmark($scope.station);
     }
   }
 
@@ -55,15 +50,23 @@ angular.module('vc.details', ['ngStorage'])
     }
   }
 
+
   if($stateParams.stationId)
   {
       var idStation = parseInt($stateParams.stationId);
       $scope.station = Stations.getStationByNumber(idStation);
-      console.log($scope.station);
+      
+      if (Stations.isBookmark(idStation)) {
+        $scope.path = "/img/bookmark_gold.png";
+      }
+      else {
+        $scope.path = "/img/bookmark_black.png";
+      }
   }
   else{
       $state.go('home');
   }
+
 
   $scope.stationPct = {
     bikes: ($scope.station.available_bikes * 100) / $scope.station.bike_stands,
