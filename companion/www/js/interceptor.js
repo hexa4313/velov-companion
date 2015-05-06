@@ -1,7 +1,7 @@
 /**
  * Created by Modou on 05/05/2015.
  */
-angular.module('vc').factory('APIInterceptor', function($rootScope, UserService) {
+angular.module('vc').service('APIInterceptor', function($rootScope, UserService) {
 
     return {
 

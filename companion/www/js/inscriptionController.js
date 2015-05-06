@@ -7,9 +7,10 @@ angular.module('vc.inscriptionController', [])
     $scope.user = {};
 
 
+
         $scope.register = function() {
 
-            Services.register($scope.data).then(function(user){
+            Services.register($scope.data.email, $scope.data.password).then(function(user){
                    $scope.user = user;
                     UserService.setUser(user);
                     $state.go("home");

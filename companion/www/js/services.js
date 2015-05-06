@@ -26,17 +26,14 @@ angular.module('vc').factory('Services', function ($http, VCConstants) {
         clearAuthToken : function() {
             $http.defaults.headers.common['Authorization'] = 'Basic';
         },
-        register: function (data) {
+        register: function (email, passw) {
 
             // $http returns a promise, which has a then function, which also returns a promise
             var url = VCConstants.DOMAIN_URL + VCConstants.PORT +'/'+VCConstants.PATH+ '/user';
             var signData = {
-                first_name: data.first_name,
-                last_name: data.last_name,
-                email: data.email,
-                password: data.password,
-                birthday: data.birthday
-            }
+                email: email,
+                password: passw
+            };
             return $http.post(url, signData).then(function (response) {
                 return response.data;
             });

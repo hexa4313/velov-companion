@@ -25,17 +25,18 @@ angular.module('vc').factory('Stations', function ($localStorage) {
                 return $localStorage['bookmarks'];
             },
             isBookmark: function (idBookmark) {
+                console.log($localStorage['bookmarks']);
                 if(!$localStorage['bookmarks']) {
                     return false;
                 }
                 var result = false;
-                for(bm of $localStorage['bookmarks']) {
-                    if(bm.number == idBookmark) {
+                for(var bm of $localStorage['bookmarks']) {
+                    if( bm != null && bm.number == idBookmark) {
                         result= true;
                         break;
                     }
-                    return result;
                 };
+                return result;
             },
             hasBookmark : function () {
                 return ($localStorage['bookmarks']? true : false)
