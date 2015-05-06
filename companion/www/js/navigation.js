@@ -73,6 +73,7 @@ angular.module('vc.navigation', ['ngRoute'])
 
             var startPos;
             var destPos;
+            var myMarker;
 
             return {
                 addRoute: function(geoJSON) {
@@ -102,7 +103,7 @@ angular.module('vc.navigation', ['ngRoute'])
                     myPos = L.latLng(geoLocation.getGeolocation());
 
                     // Adds my marker
-                    var myMarker = L.marker(myPos, {
+                    myMarker = L.marker(myPos, {
                         icon: meIcon
                     }).addTo(map);
 
@@ -116,8 +117,8 @@ angular.module('vc.navigation', ['ngRoute'])
                     console.log(geoLocation.getGeolocation());
                 },
                 followMeTo: function(lat, lon) {
+                    myMarker.setLatLng([lat, lon]);
                     map.setZoomAround([lat, lon], 23);
-                    //console.log(geoLocation.getGeolocation());
                 }
             }
         })("nav-map");
@@ -140,7 +141,7 @@ angular.module('vc.navigation', ['ngRoute'])
                 console.log(err);
             };
              ionic.Platform.ready(function() {
-                navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 500 });
+                navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 1000 });
             });
         }
 
